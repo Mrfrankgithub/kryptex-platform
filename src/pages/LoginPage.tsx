@@ -7,6 +7,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 import { Link } from "react-router-dom"
 import Button from "../components/ui/Button"
 import Input from "../components/ui/Input"
+import { useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -15,9 +16,13 @@ export default function LoginPage() {
     password: "",
   })
 
+  const navigate = useNavigate()
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Login attempt:", formData)
+    // Simulate successful login
+    navigate("/dashboard")
   }
 
   return (

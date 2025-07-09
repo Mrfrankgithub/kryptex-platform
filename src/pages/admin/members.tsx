@@ -78,7 +78,7 @@ export default function MembersPage() {
                       <div className="text-sm text-gray-400">{member.email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-gray-300">{member.country}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-white">₦{member.balance.toFixed(2)}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-white">${member.balance.toFixed(2)}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-gray-400">{member.joinDate}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-right">
                       <button

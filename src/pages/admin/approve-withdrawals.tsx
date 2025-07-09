@@ -2,15 +2,11 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Search, Check, X, Eye } from "lucide-react"
+import { Search, Check, X } from "lucide-react"
 import AdminSidebar from "../../components/AdminSidebar"
-import Input from "../../components/ui/Input"
-import Button from "../../components/ui/Button"
 
 export default function AdminApproveWithdrawalsPage() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
-  const [selectedWithdrawal, setSelectedWithdrawal] = useState<any>(null)
 
   const withdrawals = [
     {
@@ -75,302 +71,158 @@ export default function AdminApproveWithdrawalsPage() {
     },
   ]
 
-  const filteredWithdrawals = withdrawals.filter((withdrawal) => {
-    const matchesSearch =
-      withdrawal.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      withdrawal.userEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      withdrawal.walletAddress.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesStatus = statusFilter === "all" || withdrawal.status === statusFilter
-    return matchesSearch && matchesStatus
-  })
+  const filteredWithdrawals = withdrawals.filter((withdrawal) =>
+    withdrawal.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    withdrawal.userEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    withdrawal.walletAddress.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
-  const handleApprove = (withdrawalId: number) => {
-    if (confirm("Are you sure you want to approve this withdrawal?")) {
-      console.log(`Approving withdrawal ${withdrawalId}`)
-      // Here you would approve the withdrawal
-      alert("Withdrawal approved successfully!")
-    }
+  const handleApprove = (id: number) => {
+    alert(`Approved withdrawal ID: ${id}`)
   }
 
-  const handleDecline = (withdrawalId: number) => {
-    if (confirm("Are you sure you want to decline this withdrawal?")) {
-      console.log(`Declining withdrawal ${withdrawalId}`)
-      // Here you would decline the withdrawal
-      alert("Withdrawal declined!")
-    }
-  }
-
-  const handleViewDetails = (withdrawal: any) => {
-    setSelectedWithdrawal(withdrawal)
+  const handleDecline = (id: number) => {
+    alert(`Declined withdrawal ID: ${id}`)
   }
 
   return (
     <div className="min-h-screen bg-[#0a0e17] text-white flex">
       <AdminSidebar />
 
-      <div className="flex-1 lg:ml-0 ml-16">
-        <div className="p-6">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold mb-2">Approve Withdrawals</h1>
-            <p className="text-gray-400">Review and approve user withdrawal requests</p>
+            <h1 className="text-3xl font-bold text-white pl-10">Approve Withdrawals</h1>
+            <p className="text-gray-400 mt-1">Review and manage user withdrawal requests</p>
           </div>
 
-          {/* Filters */}
-          <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-6 mb-6">
-            <div className="flex flex-col lg:flex-row gap-4">
-              <div className="flex-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <Input
-                    type="text"
-                    placeholder="Search by name, email, or wallet address..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-4 py-2 bg-[rgba(0,0,0,0.2)] border border-[#00f0ff]/30 rounded-lg text-white focus:outline-none focus:border-[#00f0ff]"
-                >
-                  <option value="all">All Status</option>
-                  <option value="pending">Pending</option>
-                  <option value="approved">Approved</option>
-                  <option value="declined">Declined</option>
-                </select>
-              </div>
+          {/* Search */}
+          <div className="mb-6">
+            <div className="relative max-w-sm">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search by name, email, or wallet..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-[rgba(26,33,58,0.8)] border border-gray-700 text-white rounded-lg pl-11 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#00f0ff]"
+              />
             </div>
           </div>
 
-          {/* Withdrawals Table */}
-          <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full" style={{ maxWidth: 500}} scroll={{ x: true }}>
-                <thead className="bg-[rgba(0,0,0,0.2)]">
-                  <tr>
-                    <th className="text-left p-4 font-semibold">User</th>
-                    <th className="text-left p-4 font-semibold">Amount</th>
-                    <th className="text-left p-4 font-semibold">Method</th>
-                    <th className="text-left p-4 font-semibold">Wallet Address</th>
-                    <th className="text-left p-4 font-semibold">Status</th>
-                    <th className="text-left p-4 font-semibold">Date</th>
-                    <th className="text-left p-4 font-semibold">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredWithdrawals.map((withdrawal, index) => (
-                    <motion.tr
-                      key={withdrawal.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="border-t border-[#00f0ff]/10 hover:bg-[rgba(0,0,0,0.1)]"
-                    >
-                      <td className="p-4">
-                        <div>
-                          <div className="font-medium">{withdrawal.userName}</div>
-                          <div className="text-sm text-gray-400">{withdrawal.userEmail}</div>
-                        </div>
-                      </td>
-                      <td className="p-4">
-                        <div className="font-bold text-[#e91e63]">${withdrawal.amount.toFixed(2)}</div>
-                        <div className="text-xs text-gray-400">Fee: ${withdrawal.fee.toFixed(2)}</div>
-                      </td>
-                      <td className="p-4">
-                        <div className="font-medium">{withdrawal.method}</div>
-                      </td>
-                      <td className="p-4">
-                        <div className="text-xs text-gray-400 font-mono truncate max-w-xs">
-                          {withdrawal.walletAddress}
-                        </div>
-                      </td>
-                      <td className="p-4">
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            withdrawal.status === "pending"
-                              ? "bg-[#ffd700]/20 text-[#ffd700]"
-                              : withdrawal.status === "approved"
-                                ? "bg-[#4ade80]/20 text-[#4ade80]"
-                                : "bg-[#e91e63]/20 text-[#e91e63]"
-                          }`}
-                        >
-                          {withdrawal.status}
-                        </span>
-                      </td>
-                      <td className="p-4 text-gray-400">
-                        <div>{withdrawal.date}</div>
-                        <div className="text-xs">{withdrawal.time}</div>
-                      </td>
-                      <td className="p-4">
-                        <div className="flex space-x-2">
+          {/* Table */}
+          <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/20 overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-700">
+              <thead className="bg-white/5">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">User</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Amount</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Method</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Wallet</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Date</th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-800">
+                {filteredWithdrawals.map((w, index) => (
+                  <motion.tr
+                    key={w.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="hover:bg-white/5 transition"
+                  >
+                    <td className="px-6 py-4">
+                      <div className="font-medium text-white text-sm">{w.userName}</div>
+                      <div className="text-gray-400 text-sm">{w.userEmail}</div>
+                    </td>
+                    <td className="px-6 py-4 font-bold text-[#e91e63] text-sm">
+                      ${w.amount.toFixed(2)}
+                      <div className="text-xs text-gray-400">Fee: ${w.fee.toFixed(2)}</div>
+                    </td>
+                    <td className="px-6 py-4 text-sm">{w.method}</td>
+                    <td className="px-6 py-4 text-sm font-mono truncate max-w-xs text-gray-400">{w.walletAddress}</td>
+                    <td className="px-6 py-4 text-sm">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          w.status === "pending"
+                            ? "bg-[#ffd700]/20 text-[#ffd700]"
+                            : w.status === "approved"
+                            ? "bg-[#4ade80]/20 text-[#4ade80]"
+                            : "bg-[#e91e63]/20 text-[#e91e63]"
+                        }`}
+                      >
+                        {w.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-400">
+                      {w.date} <br /> <span className="text-xs">{w.time}</span>
+                    </td>
+                    <td className="px-6 py-4 text-right space-x-2">
+                      {w.status === "pending" && (
+                        <>
                           <button
-                            onClick={() => handleViewDetails(withdrawal)}
-                            className="p-2 bg-[#00f0ff]/20 rounded-lg hover:bg-[#00f0ff]/30 transition-colors"
-                            title="View Details"
+                            onClick={() => handleApprove(w.id)}
+                            className="p-2 rounded-md hover:bg-[#4ade80]/30 text-[#4ade80]"
+                            title="Approve"
                           >
-                            <Eye size={16} className="text-[#00f0ff]" />
+                            <Check size={16} />
                           </button>
-                          {withdrawal.status === "pending" && (
-                            <>
-                              <button
-                                onClick={() => handleApprove(withdrawal.id)}
-                                className="p-2 bg-[#4ade80]/20 rounded-lg hover:bg-[#4ade80]/30 transition-colors"
-                                title="Approve"
-                              >
-                                <Check size={16} className="text-[#4ade80]" />
-                              </button>
-                              <button
-                                onClick={() => handleDecline(withdrawal.id)}
-                                className="p-2 bg-[#e91e63]/20 rounded-lg hover:bg-[#e91e63]/30 transition-colors"
-                                title="Decline"
-                              >
-                                <X size={16} className="text-[#e91e63]" />
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                          <button
+                            onClick={() => handleDecline(w.id)}
+                            className="p-2 rounded-md hover:bg-[#e91e63]/30 text-[#e91e63]"
+                            title="Decline"
+                          >
+                            <X size={16} />
+                          </button>
+                        </>
+                      )}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+
+            {filteredWithdrawals.length === 0 && (
+              <div className="text-center py-10 text-gray-400">No withdrawal records found.</div>
+            )}
           </div>
 
-          {/* Summary Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-4 text-center">
-              <div className="text-2xl font-bold text-[#ffd700]">
+          {/* Stats */}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-[rgba(26,33,58,0.6)] border border-[#00f0ff]/20 rounded-xl p-4 text-center">
+              <div className="text-xl font-bold text-[#ffd700]">
                 {withdrawals.filter((w) => w.status === "pending").length}
               </div>
-              <div className="text-sm text-gray-400">Pending</div>
+              <div className="text-gray-400 text-sm">Pending</div>
             </div>
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-4 text-center">
-              <div className="text-2xl font-bold text-[#4ade80]">
+            <div className="bg-[rgba(26,33,58,0.6)] border border-[#00f0ff]/20 rounded-xl p-4 text-center">
+              <div className="text-xl font-bold text-[#4ade80]">
                 {withdrawals.filter((w) => w.status === "approved").length}
               </div>
-              <div className="text-sm text-gray-400">Approved</div>
+              <div className="text-gray-400 text-sm">Approved</div>
             </div>
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-4 text-center">
-              <div className="text-2xl font-bold text-[#e91e63]">
+            <div className="bg-[rgba(26,33,58,0.6)] border border-[#00f0ff]/20 rounded-xl p-4 text-center">
+              <div className="text-xl font-bold text-[#e91e63]">
                 {withdrawals.filter((w) => w.status === "declined").length}
               </div>
-              <div className="text-sm text-gray-400">Declined</div>
+              <div className="text-gray-400 text-sm">Declined</div>
             </div>
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-4 text-center">
-              <div className="text-2xl font-bold text-[#e91e63]">
+            <div className="bg-[rgba(26,33,58,0.6)] border border-[#00f0ff]/20 rounded-xl p-4 text-center">
+              <div className="text-xl font-bold text-[#e91e63]">
                 $
                 {withdrawals
                   .filter((w) => w.status === "pending")
-                  .reduce((sum, w) => sum + w.amount, 0)
+                  .reduce((acc, w) => acc + w.amount, 0)
                   .toFixed(0)}
               </div>
-              <div className="text-sm text-gray-400">Pending Amount</div>
+              <div className="text-gray-400 text-sm">Pending Amount</div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Withdrawal Details Modal */}
-      {selectedWithdrawal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-[rgba(26,33,58,0.9)] backdrop-blur-md rounded-xl border border-[#00f0ff]/20 p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">Withdrawal Details</h2>
-              <button onClick={() => setSelectedWithdrawal(null)} className="text-gray-400 hover:text-white">
-                ×
-              </button>
-            </div>
-
-            <div className="space-y-4 mb-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm text-gray-400">User:</label>
-                  <div className="font-medium">{selectedWithdrawal.userName}</div>
-                  <div className="text-sm text-gray-400">{selectedWithdrawal.userEmail}</div>
-                </div>
-                <div>
-                  <label className="text-sm text-gray-400">Amount:</label>
-                  <div className="text-2xl font-bold text-[#e91e63]">${selectedWithdrawal.amount.toFixed(2)}</div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm text-gray-400">Method:</label>
-                  <div className="font-medium">{selectedWithdrawal.method}</div>
-                </div>
-                <div>
-                  <label className="text-sm text-gray-400">Fee:</label>
-                  <div className="font-medium">${selectedWithdrawal.fee.toFixed(2)}</div>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-sm text-gray-400">Wallet Address:</label>
-                <div className="bg-[rgba(0,0,0,0.2)] rounded-lg p-3 mt-1 font-mono text-sm break-all">
-                  {selectedWithdrawal.walletAddress}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm text-gray-400">Date:</label>
-                  <div>
-                    {selectedWithdrawal.date} at {selectedWithdrawal.time}
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm text-gray-400">Status:</label>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      selectedWithdrawal.status === "pending"
-                        ? "bg-[#ffd700]/20 text-[#ffd700]"
-                        : selectedWithdrawal.status === "approved"
-                          ? "bg-[#4ade80]/20 text-[#4ade80]"
-                          : "bg-[#e91e63]/20 text-[#e91e63]"
-                    }`}
-                  >
-                    {selectedWithdrawal.status}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {selectedWithdrawal.status === "pending" && (
-              <div className="flex space-x-3">
-                <Button
-                  onClick={() => {
-                    handleDecline(selectedWithdrawal.id)
-                    setSelectedWithdrawal(null)
-                  }}
-                  className="flex-1 bg-[#e91e63] hover:bg-[#d91e63] text-white"
-                >
-                  Decline Withdrawal
-                </Button>
-                <Button
-                  onClick={() => {
-                    handleApprove(selectedWithdrawal.id)
-                    setSelectedWithdrawal(null)
-                  }}
-                  className="flex-1 bg-[#4ade80] hover:bg-[#3bc470] text-black"
-                >
-                  Approve Withdrawal
-                </Button>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      )}
     </div>
   )
 }
