@@ -25,9 +25,9 @@ export default defineConfig({
     // Listen on all network interfaces
     host: "0.0.0.0",
     allowedHosts: [
-      "latestportifolio.onrender.com",
       "localhost",
       "127.0.0.1",
+      "kryptex-platform.onrender.com",
     ],
     // Use PORT environment variable provided by Render, or default to 5173 for local development
     port: parseInt(process.env.PORT || 5173),
