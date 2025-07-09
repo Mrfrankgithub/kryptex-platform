@@ -69,7 +69,7 @@ export default function AdminDashboardPage() {
       <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-1">Admin Dashboard</h1>
+          <h1 className="text-3xl font-bold mb-1 pl-10">Admin Dashboard</h1>
           <p className="text-gray-400">Welcome back, here's an overview of your platform.</p>
         </div>
 

@@ -88,7 +88,7 @@ export default function AdminFundUsersPage() {
     const action = fundingAction === "add" ? "Added" : "Deducted"
 
     alert(
-      `${action} $${amount.toFixed(2)} ${fundingAction === "add" ? "to" : "from"} ${selectedUser.name}'s ${fundingType}`,
+      `${action} ₦${amount.toFixed(2)} ${fundingAction === "add" ? "to" : "from"} ${selectedUser.name}'s ${fundingType}`
     )
 
     setSelectedUser(null)
@@ -101,245 +101,173 @@ export default function AdminFundUsersPage() {
     <div className="min-h-screen bg-[#0a0e17] text-white flex">
       <AdminSidebar />
 
-      <div className="flex-1 lg:ml-0 ml-16">
-        <div className="p-4 lg:p-6">
+      {/* Content Wrapper */}
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+
           {/* Header */}
-          <div className="mb-6 lg:mb-8">
-            <h1 className="text-2xl lg:text-3xl font-bold mb-2">Fund Users</h1>
-            <p className="text-gray-400">Manage user balances and funds</p>
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-white pl-10">Fund Users</h1>
+            <p className="text-gray-400 mt-1">Search and manage user funds from the table below.</p>
           </div>
 
           {/* Search */}
-          <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-4 lg:p-6 mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <Input
+          <div className="mb-6">
+            <div className="relative max-w-sm">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
                 type="text"
                 placeholder="Search users by name or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="w-full bg-[rgba(26,33,58,0.8)] border border-gray-700 text-white rounded-lg pl-11 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#00f0ff]"
               />
             </div>
           </div>
 
-          {/* Users Table */}
-          <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 overflow-hidden">
-            <div className="overflow-x-auto">
-              <div className="min-w-[900px]">
-                <table className="w-full">
-                  <thead className="bg-[rgba(0,0,0,0.2)]">
-                    <tr>
-                      <th className="text-left p-3 lg:p-4 font-semibold">User</th>
-                      <th className="text-left p-3 lg:p-4 font-semibold">Balance</th>
-                      <th className="text-left p-3 lg:p-4 font-semibold">Withdrawable</th>
-                      <th className="text-left p-3 lg:p-4 font-semibold">Total Profits</th>
-                      <th className="text-left p-3 lg:p-4 font-semibold">Total Deposits</th>
-                      <th className="text-left p-3 lg:p-4 font-semibold">Status</th>
-                      <th className="text-left p-3 lg:p-4 font-semibold">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredUsers.map((user, index) => (
-                      <motion.tr
-                        key={user.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="border-t border-[#00f0ff]/10 hover:bg-[rgba(0,0,0,0.1)]"
+          {/* Table */}
+          <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/20 overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-700">
+              <thead className="bg-white/5">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">User</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Balance</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Withdrawable</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Profits</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Deposits</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-800">
+                {filteredUsers.map((user, index) => (
+                  <motion.tr
+                    key={user.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="hover:bg-white/5 transition"
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-white">{user.name}</div>
+                      <div className="text-sm text-gray-400">{user.email}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-[#00f0ff] font-semibold">₦{user.balance.toFixed(2)}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-[#4ade80] font-semibold">₦{user.withdrawableBalance.toFixed(2)}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-[#ffd700] font-semibold">₦{user.totalProfits.toFixed(2)}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-[#e91e63] font-semibold">₦{user.totalDeposits.toFixed(2)}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        user.status === "active"
+                          ? "bg-[#4ade80]/20 text-[#4ade80]"
+                          : user.status === "suspended"
+                          ? "bg-[#e91e63]/20 text-[#e91e63]"
+                          : "bg-gray-500/20 text-gray-400"
+                      }`}>
+                        {user.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <Button
+                        onClick={() => handleFundUser(user)}
+                        className="bg-[#00f0ff] hover:bg-[#00d4e6] text-black px-4 py-2 text-xs font-semibold"
                       >
-                        <td className="p-3 lg:p-4">
-                          <div>
-                            <div className="font-medium text-sm lg:text-base">{user.name}</div>
-                            <div className="text-xs lg:text-sm text-gray-400">{user.email}</div>
-                          </div>
-                        </td>
-                        <td className="p-3 lg:p-4">
-                          <div className="font-bold text-[#00f0ff] text-sm lg:text-base">
-                            ${user.balance.toFixed(2)}
-                          </div>
-                        </td>
-                        <td className="p-3 lg:p-4">
-                          <div className="font-bold text-[#4ade80] text-sm lg:text-base">
-                            ${user.withdrawableBalance.toFixed(2)}
-                          </div>
-                        </td>
-                        <td className="p-3 lg:p-4">
-                          <div className="font-bold text-[#ffd700] text-sm lg:text-base">
-                            ${user.totalProfits.toFixed(2)}
-                          </div>
-                        </td>
-                        <td className="p-3 lg:p-4">
-                          <div className="font-bold text-[#e91e63] text-sm lg:text-base">
-                            ${user.totalDeposits.toFixed(2)}
-                          </div>
-                        </td>
-                        <td className="p-3 lg:p-4">
-                          <span
-                            className={`px-2 lg:px-3 py-1 rounded-full text-xs font-medium ${
-                              user.status === "active"
-                                ? "bg-[#4ade80]/20 text-[#4ade80]"
-                                : user.status === "suspended"
-                                  ? "bg-[#e91e63]/20 text-[#e91e63]"
-                                  : "bg-gray-500/20 text-gray-400"
-                            }`}
-                          >
-                            {user.status}
-                          </span>
-                        </td>
-                        <td className="p-3 lg:p-4">
-                          <Button
-                            onClick={() => handleFundUser(user)}
-                            className="bg-[#00f0ff] hover:bg-[#00d4e6] text-black text-xs lg:text-sm px-3 lg:px-4 py-1.5 lg:py-2"
-                          >
-                            <DollarSign size={14} className="mr-1 lg:mr-2" />
-                            Fund User
-                          </Button>
-                        </td>
-                      </motion.tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+                        <DollarSign size={14} className="mr-1" />
+                        Fund User
+                      </Button>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
 
-          {/* Summary Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-6">
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-3 lg:p-4 text-center">
-              <div className="text-xl lg:text-2xl font-bold text-[#00f0ff]">
-                ${users.reduce((sum, u) => sum + u.balance, 0).toFixed(0)}
-              </div>
-              <div className="text-xs lg:text-sm text-gray-400">Total Balance</div>
-            </div>
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-3 lg:p-4 text-center">
-              <div className="text-xl lg:text-2xl font-bold text-[#4ade80]">
-                ${users.reduce((sum, u) => sum + u.withdrawableBalance, 0).toFixed(0)}
-              </div>
-              <div className="text-xs lg:text-sm text-gray-400">Total Withdrawable</div>
-            </div>
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-3 lg:p-4 text-center">
-              <div className="text-xl lg:text-2xl font-bold text-[#ffd700]">
-                ${users.reduce((sum, u) => sum + u.totalProfits, 0).toFixed(0)}
-              </div>
-              <div className="text-xs lg:text-sm text-gray-400">Total Profits</div>
-            </div>
-            <div className="bg-[rgba(26,33,58,0.6)] rounded-xl border border-[#00f0ff]/10 p-3 lg:p-4 text-center">
-              <div className="text-xl lg:text-2xl font-bold text-[#e91e63]">
-                ${users.reduce((sum, u) => sum + u.totalDeposits, 0).toFixed(0)}
-              </div>
-              <div className="text-xs lg:text-sm text-gray-400">Total Deposits</div>
-            </div>
+            {filteredUsers.length === 0 && (
+              <div className="text-center py-10 text-gray-400">No users found.</div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Fund User Modal */}
+      {/* Modal */}
       {selectedUser && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-[rgba(26,33,58,0.9)] backdrop-blur-md rounded-xl border border-[#00f0ff]/20 p-4 lg:p-6 max-w-md w-full"
+            className="bg-[rgba(26,33,58,0.9)] border border-[#00f0ff]/20 rounded-xl p-6 w-full max-w-md"
           >
-            <div className="flex justify-between items-center mb-4 lg:mb-6">
-              <h2 className="text-xl lg:text-2xl font-bold">Fund User</h2>
-              <button onClick={() => setSelectedUser(null)} className="text-gray-400 hover:text-white text-2xl">
-                ×
-              </button>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Fund {selectedUser.name}</h2>
+              <button onClick={() => setSelectedUser(null)} className="text-white text-2xl">×</button>
             </div>
 
-            <div className="space-y-4 mb-4 lg:mb-6">
-              <div>
-                <label className="text-sm text-gray-400">User:</label>
-                <div className="font-medium text-lg">{selectedUser.name}</div>
-                <div className="text-sm text-gray-400">{selectedUser.email}</div>
+            <div className="space-y-4">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Balance:</span>
+                <span className="text-[#00f0ff] font-bold">₦{selectedUser.balance.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Withdrawable:</span>
+                <span className="text-[#4ade80] font-bold">₦{selectedUser.withdrawableBalance.toFixed(2)}</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="bg-[rgba(0,0,0,0.2)] rounded-lg p-3">
-                  <div className="text-gray-400">Current Balance</div>
-                  <div className="font-bold text-[#00f0ff]">${selectedUser.balance.toFixed(2)}</div>
-                </div>
-                <div className="bg-[rgba(0,0,0,0.2)] rounded-lg p-3">
-                  <div className="text-gray-400">Withdrawable</div>
-                  <div className="font-bold text-[#4ade80]">${selectedUser.withdrawableBalance.toFixed(2)}</div>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Action:</label>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => setFundingAction("add")}
-                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      fundingAction === "add"
-                        ? "bg-[#4ade80] text-black"
-                        : "bg-[rgba(0,0,0,0.2)] text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    <Plus size={16} className="inline mr-1" />
-                    Add Funds
-                  </button>
-                  <button
-                    onClick={() => setFundingAction("deduct")}
-                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      fundingAction === "deduct"
-                        ? "bg-[#e91e63] text-white"
-                        : "bg-[rgba(0,0,0,0.2)] text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    <Minus size={16} className="inline mr-1" />
-                    Deduct Funds
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Fund Type:</label>
-                <select
-                  value={fundingType}
-                  onChange={(e) => setFundingType(e.target.value)}
-                  className="w-full px-3 py-2 bg-[rgba(0,0,0,0.2)] border border-[#00f0ff]/30 rounded-lg text-white focus:outline-none focus:border-[#00f0ff]"
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setFundingAction("add")}
+                  className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium ${
+                    fundingAction === "add" ? "bg-[#4ade80] text-black" : "bg-[rgba(0,0,0,0.2)] text-gray-400"
+                  }`}
                 >
-                  <option value="balance">Balance</option>
-                  <option value="withdrawableBalance">Withdrawable Balance</option>
-                  <option value="totalProfits">Total Profits</option>
-                  <option value="totalDeposits">Total Deposits</option>
-                </select>
+                  <Plus className="inline mr-1" size={16} /> Add
+                </button>
+                <button
+                  onClick={() => setFundingAction("deduct")}
+                  className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium ${
+                    fundingAction === "deduct" ? "bg-[#e91e63] text-white" : "bg-[rgba(0,0,0,0.2)] text-gray-400"
+                  }`}
+                >
+                  <Minus className="inline mr-1" size={16} /> Deduct
+                </button>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium mb-2">Amount ($):</label>
-                <Input
-                  type="number"
-                  value={fundingAmount}
-                  onChange={(e) => setFundingAmount(e.target.value)}
-                  placeholder="Enter amount"
-                  min="0"
-                  step="0.01"
-                />
-              </div>
-            </div>
+              <select
+                value={fundingType}
+                onChange={(e) => setFundingType(e.target.value)}
+                className="w-full px-3 py-2 bg-[rgba(0,0,0,0.2)] border border-[#00f0ff]/30 rounded-lg text-white focus:outline-none"
+              >
+                <option value="balance">Balance</option>
+                <option value="withdrawableBalance">Withdrawable</option>
+                <option value="totalProfits">Total Profits</option>
+                <option value="totalDeposits">Total Deposits</option>
+              </select>
 
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-              <Button
-                onClick={() => setSelectedUser(null)}
-                className="flex-1 bg-transparent border border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff]/10"
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={handleSubmitFunding}
-                className={`flex-1 ${
-                  fundingAction === "add"
-                    ? "bg-[#4ade80] hover:bg-[#3bc470] text-black"
-                    : "bg-[#e91e63] hover:bg-[#d91e63] text-white"
-                }`}
-              >
-                {fundingAction === "add" ? "Add Funds" : "Deduct Funds"}
-              </Button>
+              <Input
+                type="number"
+                placeholder="Enter amount"
+                value={fundingAmount}
+                onChange={(e) => setFundingAmount(e.target.value)}
+                min="0"
+              />
+
+              <div className="flex gap-2 mt-4">
+                <Button
+                  onClick={() => setSelectedUser(null)}
+                  className="flex-1 border border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff]/10"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSubmitFunding}
+                  className={`flex-1 ${
+                    fundingAction === "add"
+                      ? "bg-[#4ade80] text-black hover:bg-[#3bc470]"
+                      : "bg-[#e91e63] text-white hover:bg-[#d91e63]"
+                  }`}
+                >
+                  {fundingAction === "add" ? "Add Funds" : "Deduct Funds"}
+                </Button>
+              </div>
             </div>
           </motion.div>
         </div>
