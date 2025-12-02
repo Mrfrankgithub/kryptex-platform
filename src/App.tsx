@@ -1,3 +1,4 @@
+// src/App.tsx
 import { Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
@@ -25,6 +26,7 @@ import AdminSupportMessagesPage from "./pages/admin/support-messages"
 import AdminFundUsersPage from "./pages/admin/fund-users"
 import AdminApproveDepositsPage from "./pages/admin/approve-deposits"
 import AdminApproveWithdrawalsPage from "./pages/admin/approve-withdrawals"
+import AdminApproveKYCPage from "./pages/admin/approve-kyc"
 
 function App() {
   return (
@@ -64,6 +66,7 @@ function App() {
         <Route path="/admin/fund-users" element={<AdminFundUsersPage />} />
         <Route path="/admin/approve-deposits" element={<AdminApproveDepositsPage />} />
         <Route path="/admin/approve-withdrawals" element={<AdminApproveWithdrawalsPage />} />
+        <Route path="/admin/approve-kyc" element={<AdminApproveKYCPage />} />
       </Routes>
 
       {/* Only show Footer on non-dashboard and non-admin routes */}

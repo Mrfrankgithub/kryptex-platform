@@ -24,9 +24,10 @@ export default function InvestmentPlansPage() {
         "5% Referral Commission",
       ],
       popular: false,
-      color: "border-[#00f0ff]/40",
-      bgColor: "bg-gradient-to-br from-[#0a0e17] to-[#1a213a]",
-      gradient: "from-[#00f0ff] to-[#00f0ff]",
+      color: "border-[#fbbf24]/40",
+      bgColor: "bg-gradient-to-br from-purple-900/20 to-purple-800/20",
+      gradient: "from-[#fbbf24] to-[#f59e0b]",
+      badgeColor: "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b]",
     },
     {
       name: "STANDARD PLAN",
@@ -44,9 +45,10 @@ export default function InvestmentPlansPage() {
         "7% Referral Commission",
       ],
       popular: true,
-      color: "border-[#4ade80]/60",
-      bgColor: "bg-gradient-to-br from-[#0a0e17] to-[#1a213a]",
-      gradient: "from-[#4ade80] to-[#4ade80]",
+      color: "border-[#a78bfa]/60",
+      bgColor: "bg-gradient-to-br from-purple-900/30 to-purple-800/30",
+      gradient: "from-[#a78bfa] to-[#8b5cf6]",
+      badgeColor: "bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6]",
     },
     {
       name: "EXTENDED PLAN",
@@ -64,9 +66,10 @@ export default function InvestmentPlansPage() {
         "12% Referral Commission",
       ],
       popular: false,
-       color: "border-[#00f0ff]/40",
-      bgColor: "bg-gradient-to-br from-[#0a0e17] to-[#1a213a]",
-      gradient: "from-[#00f0ff] to-[#00f0ff]",
+      color: "border-[#fbbf24]/40",
+      bgColor: "bg-gradient-to-br from-purple-900/20 to-purple-800/20",
+      gradient: "from-[#fbbf24] to-[#f59e0b]",
+      badgeColor: "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b]",
     },
     {
       name: "VIP PLAN",
@@ -84,14 +87,15 @@ export default function InvestmentPlansPage() {
         "15% Referral Commission",
       ],
       popular: false,
-     color: "border-[#4ade80]/60",
-      bgColor: "bg-gradient-to-br from-[#0a0e17] to-[#1a213a]",
-      gradient: "from-[#4ade80] to-[#4ade80]",
+      color: "border-[#a78bfa]/60",
+      bgColor: "bg-gradient-to-br from-purple-900/30 to-purple-800/30",
+      gradient: "from-[#a78bfa] to-[#8b5cf6]",
+      badgeColor: "bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6]",
     },
   ]
 
   return (
-    <div className="min-h-screen bg-[#0a0e17] text-white">
+    <div className="min-h-screen bg-kryptex-dark text-white">
       <PageHeader
         title="Investment Plans"
         subtitle="Choose the perfect mining plan that matches your investment goals"
@@ -106,13 +110,10 @@ export default function InvestmentPlansPage() {
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block bg-[#1a213a] rounded-full px-6 py-2 mb-4">
-              <div className="w-2 h-2 bg-[#00f0ff] rounded-full mr-2 animate-pulse inline-block"></div>
-             ⭐ <span className="text-[#00f0ff] font-medium">Our Plans</span> ⭐
+            <div className="inline-block bg-purple-900/50 border border-[#fbbf24]/20 rounded-full px-6 py-2 mb-4">
+              <div className="w-2 h-2 bg-[#fbbf24] rounded-full mr-2 animate-pulse inline-block"></div>
+              <span className="text-[#fbbf24] font-medium">OUR PLANS</span>
             </div>
-            {/* <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              ⭐ <span className="text-[#00f0ff]">MINING PLANS</span> 
-            </h2> */}
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Professional cryptocurrency mining with guaranteed returns and secure investments
             </p>
@@ -131,21 +132,21 @@ export default function InvestmentPlansPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className={`relative glass-card border-2 ${plan.color} rounded-2xl overflow-hidden hover:shadow-glow transition-all duration-300`}
+                className={`relative glass border-2 ${plan.color} rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-[#fbbf24]/10 transition-all duration-300 ${plan.bgColor}`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    {/* <div className="bg-gradient-to-r from-[#4ade80] to-[#2ecc71] text-black px-4 py-2 rounded-full text-sm font-semibold flex items-center shadow-lg shadow-[#4ade80]/30">
-                      <Star className="w-4 h-4 mt-3" />
+                    <div className={`${plan.badgeColor} text-black px-4 py-2 rounded-full text-sm font-semibold flex items-center shadow-lg shadow-purple-800/50`}>
+                      <Star className="w-4 h-4 mr-1" />
                       Most Popular
-                    </div> */}
+                    </div>
                   </div>
                 )}
 
                 {/* Plan header with gradient */}
                 <div className={`bg-gradient-to-r ${plan.gradient} p-4`}>
                   <div className="text-center mb-2">
-                    <div className="text-xl font-bold mb-1">
+                    <div className="text-xl font-bold mb-1 text-black">
                       {plan.name}
                     </div>
                     <div className="text-4xl font-bold text-black">{plan.profit}</div>
@@ -155,17 +156,17 @@ export default function InvestmentPlansPage() {
 
                 <div className="p-6">
                   <div className="flex items-center justify-center text-gray-300 mb-4">
-                    <Clock className="w-5 h-5 mr-2 text-[#00f0ff]" />
+                    <Clock className="w-5 h-5 mr-2 text-[#fbbf24]" />
                     Withdrawal after {plan.duration}
                   </div>
                   
-                  <div className="glass bg-[#1a213a] rounded-lg p-4 mb-6">
+                  <div className="glass bg-purple-900/30 rounded-lg p-4 mb-6">
                     <div className="flex items-center justify-center text-sm mb-2">
-                      <DollarSign className="w-4 h-4 mr-2 text-[#00f0ff]" />
+                      <DollarSign className="w-4 h-4 mr-2 text-[#fbbf24]" />
                       <span className="font-semibold">MIN:</span> {plan.minDeposit}
                     </div>
                     <div className="flex items-center justify-center text-sm">
-                      <DollarSign className="w-4 h-4 mr-2 text-[#00f0ff]" />
+                      <DollarSign className="w-4 h-4 mr-2 text-[#fbbf24]" />
                       <span className="font-semibold">MAX:</span> {plan.maxDeposit}
                     </div>
                   </div>
@@ -173,14 +174,14 @@ export default function InvestmentPlansPage() {
                   <ul className="space-y-3 mb-6">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <Check className="w-4 h-4 text-[#4ade80] mr-2 flex-shrink-0 mt-1" />
+                        <Check className="w-4 h-4 text-[#a78bfa] mr-2 flex-shrink-0 mt-1" />
                         <span className="text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   <Link to="/register">
-                    <button className="w-full py-3 font-semibold bg-gradient-to-r from-[#00f0ff] to-[#00d4e6] text-black rounded-lg transition-all duration-300 hover:shadow-glow flex items-center justify-center">
+                    <button className={`w-full py-3 font-semibold bg-gradient-to-r ${plan.gradient} text-black rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-purple-800/30 flex items-center justify-center`}>
                       Start Mining
                       <ChevronRight className="ml-2 w-5 h-5" />
                     </button>
@@ -200,23 +201,23 @@ export default function InvestmentPlansPage() {
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8 }}
           >
-            <div className="glass-card border border-[#00f0ff]/20 rounded-2xl p-8 text-center">
-              <div className="inline-block bg-gradient-to-r from-[#00f0ff] to-[#00d4e6] text-black rounded-full p-3 mb-6">
+            <div className="glass border border-[#fbbf24]/20 rounded-2xl p-8 text-center">
+              <div className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black rounded-full p-3 mb-6">
                 <Headphones className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">LIVE CHAT SUPPORT SYSTEM</h3>
+              <h3 className="text-2xl font-bold mb-4 text-white">LIVE CHAT SUPPORT SYSTEM</h3>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
                 FOR ANY COMPLAINT OR ASSISTANCE PLEASE CONTACT OUR 24/7 SUPPORT TEAM
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/support">
-                  <Button className="bg-gradient-to-r from-[#4ade80] to-[#3bc470] hover:from-[#3bc470] hover:to-[#2eae60] text-black px-8 py-3">
+                  <Button className="bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] hover:from-[#8b5cf6] hover:to-[#7c3aed] text-white px-8 py-3">
                     Contact Support
                   </Button>
                 </Link>
                 <Button
                   variant="outline"
-                  className="border-2 border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff] hover:text-black px-8 py-3 bg-transparent"
+                  className="border-2 border-[#fbbf24] text-[#fbbf24] hover:bg-[#fbbf24] hover:text-black px-8 py-3 bg-transparent"
                 >
                   Live Chat
                 </Button>
@@ -227,11 +228,11 @@ export default function InvestmentPlansPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 px-4 bg-[#1a213a]">
+      <section className="py-16 px-4 bg-purple-900/20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Frequently Asked <span className="text-[#00f0ff]">Questions</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Frequently Asked <span className="text-[#fbbf24]">Questions</span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto">
               Find answers to common questions about our investment plans and mining process
@@ -241,7 +242,7 @@ export default function InvestmentPlansPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                question: "How do I start mining with Kryptex?",
+                question: "How do I start mining with Cryptoglobtrade?",
                 answer: "Simply register an account, choose a mining plan, make a deposit, and our system will start mining for you immediately."
               },
               {
@@ -262,9 +263,9 @@ export default function InvestmentPlansPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass-card border border-[#00f0ff]/20 rounded-xl p-6"
+                className="glass border border-[#fbbf24]/20 rounded-xl p-6"
               >
-                <h3 className="text-xl font-semibold mb-3 text-[#00f0ff]">{item.question}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-[#fbbf24]">{item.question}</h3>
                 <p className="text-gray-300">{item.answer}</p>
               </motion.div>
             ))}

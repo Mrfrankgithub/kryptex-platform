@@ -59,20 +59,20 @@ export default function Navbar() {
         </div>
       )}
 
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgba(10,14,23,0.95)] backdrop-blur-md border-b border-[#00f0ff]/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgba(15,11,30,0.95)] backdrop-blur-md border-b border-[#fbbf24]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <motion.div whileHover={{ scale: 1.05 }} className="flex items-center">
-                <img src="/logo.png" alt="Kryptex Logo" className="h-20 w-auto mr-4" />
+              <motion.div whileHover={{ scale: 1.04 }} className="flex items-center">
+                <img src="/logo.png" alt="Cryptoglobtrade Logo" className="h-24 w-auto mr-4" />
               </motion.div>
             </Link>
 
             {/* Unified Translate Element - Visible everywhere */}
-            <div className="flex items-center gap-2 text-[#00f0ff] text-sm min-w-max">
+            <div className="flex items-center gap-2 text-[#fbbf24] text-sm min-w-max">
               <Globe className="w-4 h-4" />
-              <span>Translate</span>
+              {/* <span>Translate</span> */}
               <div
                 id="google_translate_element"
                 className="w-36 h-10 pt-5 overflow-hidden flex items-center"
@@ -87,15 +87,15 @@ export default function Navbar() {
                   to={link.href}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive(link.href)
-                      ? "text-[#00f0ff]"
-                      : "text-white hover:text-[#00f0ff]"
+                      ? "text-[#fbbf24]"
+                      : "text-white hover:text-[#fbbf24]"
                   }`}
                 >
                   {link.label}
                   {isActive(link.href) && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00f0ff]"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#fbbf24] to-[#a78bfa]"
                     />
                   )}
                 </Link>
@@ -105,15 +105,15 @@ export default function Navbar() {
             {/* Desktop Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <Link to="/login">
-                <button className="bg-transparent border-2 border-[#00f0ff] text-[#00f0ff] px-6 py-2 font-semibold relative overflow-hidden group transition-all duration-300 hover:text-black">
+                <button className="bg-transparent border-2 border-[#fbbf24] text-[#fbbf24] px-6 py-2 font-semibold rounded-lg relative overflow-hidden group transition-all duration-300 hover:text-black hover:shadow-lg hover:shadow-[#fbbf24]/20">
                   <span className="relative z-10">Login</span>
-                  <div className="absolute inset-0 bg-[#00f0ff] transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-[#fbbf24] transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
                 </button>
               </Link>
               <Link to="/register">
-                <button className="bg-[#00f0ff] text-black px-6 py-2 font-semibold relative overflow-hidden group transition-all duration-300 hover:text-[#00f0ff]">
+                <button className="bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black px-6 py-2 font-semibold rounded-lg relative overflow-hidden group transition-all duration-300 hover:text-white hover:shadow-lg hover:shadow-[#fbbf24]/20">
                   <span className="relative z-10">Register</span>
-                  <div className="absolute inset-0 bg-transparent border-2 border-[#00f0ff] transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
                 </button>
               </Link>
             </div>
@@ -122,7 +122,7 @@ export default function Navbar() {
             <div className="md:hidden flex items-center space-x-2">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-white hover:text-[#00f0ff] transition-colors duration-200"
+                className="text-white hover:text-[#fbbf24] transition-colors duration-200"
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -138,7 +138,7 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-[rgba(10,14,23,0.95)] backdrop-blur-md border-t border-[#00f0ff]/20"
+              className="md:hidden bg-[rgba(15,11,30,0.98)] backdrop-blur-md border-t border-[#fbbf24]/20"
             >
               <div className="px-4 py-4 space-y-4">
                 {navLinks.map((link) => (
@@ -148,8 +148,8 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={`block px-3 py-2 text-base font-medium transition-colors duration-200 ${
                       isActive(link.href)
-                        ? "text-[#00f0ff] bg-[rgba(0,240,255,0.1)] rounded-lg"
-                        : "text-white hover:text-[#00f0ff]"
+                        ? "text-[#fbbf24] bg-gradient-to-r from-purple-900/30 to-purple-800/30 rounded-lg"
+                        : "text-white hover:text-[#fbbf24] hover:bg-purple-900/10 rounded-lg"
                     }`}
                   >
                     {link.label}
@@ -158,15 +158,15 @@ export default function Navbar() {
 
                 <div className="pt-2 space-y-3">
                   <Link to="/login" onClick={() => setIsOpen(false)}>
-                    <button className="w-full bg-transparent border-2 border-[#00f0ff] text-[#00f0ff] px-6 py-2 font-semibold relative overflow-hidden group transition-all duration-300 hover:text-black">
+                    <button className="w-full bg-transparent border-2 border-[#fbbf24] text-[#fbbf24] px-6 py-2 font-semibold rounded-lg relative overflow-hidden group transition-all duration-300 hover:text-black">
                       <span className="relative z-10">Login</span>
-                      <div className="absolute inset-0 bg-[#00f0ff] transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
+                      <div className="absolute inset-0 bg-[#fbbf24] transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
                     </button>
                   </Link>
                   <Link to="/register" onClick={() => setIsOpen(false)}>
-                    <button className="w-full bg-[#00f0ff] text-black px-6 py-2 font-semibold relative overflow-hidden group transition-all duration-300 hover:text-[#00f0ff]">
+                    <button className="w-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black px-6 py-2 font-semibold rounded-lg relative overflow-hidden group transition-all duration-300 hover:text-white">
                       <span className="relative z-10">Register</span>
-                      <div className="absolute inset-0 bg-transparent border-2 border-[#00f0ff] transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 transform -skew-x-12 w-0 group-hover:w-full transition-all duration-300"></div>
                     </button>
                   </Link>
                 </div>

@@ -9,6 +9,7 @@ import {
   Wallet,
   ArrowDownCircle,
   ArrowUpCircle,
+  ShieldCheck,
   LogOut,
   Menu,
   X,
@@ -31,6 +32,7 @@ export default function AdminSidebar() {
     { icon: <Wallet size={20} />, label: "Fund Users", href: "/admin/fund-users" },
     { icon: <ArrowDownCircle size={20} />, label: "Approve Deposits", href: "/admin/approve-deposits" },
     { icon: <ArrowUpCircle size={20} />, label: "Approve Withdrawals", href: "/admin/approve-withdrawals" },
+    { icon: <ShieldCheck size={20} />, label: "Approve KYC", href: "/admin/approve-kyc" },
   ]
 
   const handleLogout = () => {
@@ -69,10 +71,10 @@ export default function AdminSidebar() {
           {/* Header */}
           <div className="p-4 border-b border-[#00f0ff]/20 flex items-center">
             <div className="w-8 h-8 bg-[#00f0ff] rounded-lg flex items-center justify-center mr-3">
-              <span className="text-black font-bold text-sm">K</span>
+              <span className="text-black font-bold text-sm">C</span>
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Kryptex</h2>
+              <h2 className="text-lg font-bold text-white">Cryptoglobtrade</h2>
               <p className="text-xs text-gray-400">Admin Panel</p>
             </div>
           </div>

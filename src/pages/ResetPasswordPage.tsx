@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Lock, Eye, EyeOff, CheckCircle, Shield } from "lucide-react"
+import { Lock, Eye, EyeOff, CheckCircle, Shield, ArrowLeft } from "lucide-react"
 import { Link } from "react-router-dom"
 import Button from "../components/ui/Button"
 import Input from "../components/ui/Input"
@@ -56,20 +56,22 @@ export default function ResetPasswordPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-[#0a0e17] text-white flex items-center justify-center px-4 pt-20">
+      <div className="min-h-screen bg-kryptex-dark text-white flex items-center justify-center px-4 pt-20">
         <div className="w-full max-w-md">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="bg-[rgba(26,33,58,0.6)] backdrop-blur-md border border-[#4ade80]/20 rounded-2xl p-8 text-center"
+            className="glass border border-[#a78bfa]/20 rounded-2xl p-8 text-center shadow-lg shadow-purple-900/20"
           >
-            <div className="w-20 h-20 bg-[#4ade80]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-[#4ade80]" />
+           
+
+            <div className="w-20 h-20 bg-gradient-to-r from-[#a78bfa]/20 to-[#8b5cf6]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-10 h-10 text-[#a78bfa]" />
             </div>
 
-            <h1 className="text-3xl font-bold mb-4">
-              Password <span className="text-[#4ade80]">Reset</span> Successful!
+            <h1 className="text-3xl font-bold mb-4 text-white">
+              Password <span className="text-[#a78bfa]">Reset</span> Successful!
             </h1>
 
             <p className="text-gray-400 mb-8">
@@ -77,7 +79,7 @@ export default function ResetPasswordPage() {
             </p>
 
             <Link to="/login">
-              <Button className="w-full bg-[#4ade80] hover:bg-[#3bc470] text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105">
+              <Button className="w-full bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] hover:from-[#8b5cf6] hover:to-[#7c3aed] text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#a78bfa]/20">
                 Continue to Login
               </Button>
             </Link>
@@ -88,41 +90,52 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0e17] text-white flex items-center justify-center px-4 pt-20">
+    <div className="min-h-screen bg-kryptex-dark text-white flex items-center justify-center px-4 pt-20">
       <div className="w-full max-w-md">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-[rgba(26,33,58,0.6)] backdrop-blur-md border border-[#00f0ff]/20 rounded-2xl p-8"
+          className="glass border border-[#fbbf24]/20 rounded-2xl p-8 shadow-lg shadow-purple-900/20"
         >
+        
+
+          {/* Back to Login */}
+          <Link
+            to="/login"
+            className="inline-flex items-center text-[#fbbf24] hover:text-[#f59e0b] transition-colors duration-200 mb-6"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Login
+          </Link>
+
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-[#00f0ff]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-[#00f0ff]" />
+            <div className="w-16 h-16 bg-gradient-to-r from-[#fbbf24]/20 to-[#f59e0b]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Shield className="w-8 h-8 text-[#fbbf24]" />
             </div>
-            <h1 className="text-3xl font-bold mb-2">
-              Reset Your <span className="text-[#00f0ff]">Password</span>
+            <h1 className="text-3xl font-bold mb-2 text-white">
+              Reset Your <span className="text-[#fbbf24]">Password</span>
             </h1>
-            <p className="text-gray-400">Create a strong, secure password for your Kryptex account</p>
+            <p className="text-gray-400">Create a strong, secure password for your Cryptoglobtrade account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium mb-2">New Password</label>
+              <label className="block text-sm font-medium mb-2 text-gray-300">New Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#a78bfa]" />
                 <Input
                   type={showPassword ? "text" : "password"}
                   placeholder="Create a new password"
                   value={formData.password}
                   onChange={handlePasswordChange}
-                  className="pl-10 pr-10"
+                  className="pl-10 pr-10 bg-purple-900/20 border-purple-700/50 focus:border-[#fbbf24] text-white"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-[#fbbf24]"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -130,9 +143,9 @@ export default function ResetPasswordPage() {
 
               {/* Password Strength Indicator */}
               {formData.password && (
-                <div className="mt-3 space-y-2">
-                  <div className="text-sm font-medium text-gray-300">Password Requirements:</div>
-                  <div className="space-y-1">
+                <div className="mt-4 p-4 bg-purple-900/20 border border-purple-700/30 rounded-lg">
+                  <div className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</div>
+                  <div className="space-y-2">
                     {[
                       { key: "length", text: "At least 8 characters" },
                       { key: "uppercase", text: "One uppercase letter" },
@@ -140,16 +153,22 @@ export default function ResetPasswordPage() {
                       { key: "number", text: "One number" },
                       { key: "special", text: "One special character" },
                     ].map((req) => (
-                      <div key={req.key} className="flex items-center text-xs">
+                      <div key={req.key} className="flex items-center text-sm">
                         <div
-                          className={`w-2 h-2 rounded-full mr-2 ${
-                            passwordStrength[req.key as keyof typeof passwordStrength] ? "bg-[#4ade80]" : "bg-gray-500"
+                          className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${
+                            passwordStrength[req.key as keyof typeof passwordStrength] 
+                              ? "bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] text-white" 
+                              : "bg-purple-900/50 text-gray-500 border border-purple-700/50"
                           }`}
-                        />
+                        >
+                          {passwordStrength[req.key as keyof typeof passwordStrength] && (
+                            <CheckCircle className="w-3 h-3" />
+                          )}
+                        </div>
                         <span
                           className={
                             passwordStrength[req.key as keyof typeof passwordStrength]
-                              ? "text-[#4ade80]"
+                              ? "text-[#a78bfa]"
                               : "text-gray-400"
                           }
                         >
@@ -163,21 +182,21 @@ export default function ResetPasswordPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Confirm New Password</label>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Confirm New Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#a78bfa]" />
                 <Input
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm your new password"
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                  className="pl-10 pr-10"
+                  className="pl-10 pr-10 bg-purple-900/20 border-purple-700/50 focus:border-[#fbbf24] text-white"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-[#fbbf24]"
                 >
                   {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -185,15 +204,17 @@ export default function ResetPasswordPage() {
 
               {/* Password Match Indicator */}
               {formData.confirmPassword && (
-                <div className="mt-2">
+                <div className="mt-3">
                   {formData.password === formData.confirmPassword ? (
-                    <div className="flex items-center text-xs text-[#4ade80]">
-                      <CheckCircle className="w-3 h-3 mr-1" />
+                    <div className="flex items-center text-sm text-[#a78bfa] bg-gradient-to-r from-[#a78bfa]/10 to-transparent p-2 rounded-lg">
+                      <CheckCircle className="w-4 h-4 mr-2" />
                       Passwords match
                     </div>
                   ) : (
-                    <div className="flex items-center text-xs text-red-400">
-                      <div className="w-3 h-3 rounded-full bg-red-400 mr-1" />
+                    <div className="flex items-center text-sm text-red-400 bg-gradient-to-r from-red-500/10 to-transparent p-2 rounded-lg">
+                      <div className="w-4 h-4 rounded-full bg-red-400 mr-2 flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
                       Passwords don't match
                     </div>
                   )}
@@ -206,7 +227,7 @@ export default function ResetPasswordPage() {
               disabled={
                 !Object.values(passwordStrength).every(Boolean) || formData.password !== formData.confirmPassword
               }
-              className="w-full bg-[#00f0ff] hover:bg-[#00d4e6] text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] hover:from-[#f59e0b] hover:to-[#d97706] text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#fbbf24]/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-none"
             >
               Reset Password
             </Button>
@@ -215,15 +236,16 @@ export default function ResetPasswordPage() {
           <div className="mt-8 text-center">
             <p className="text-gray-400">
               Remember your password?{" "}
-              <Link to="/login" className="text-[#00f0ff] hover:underline font-semibold">
+              <Link to="/login" className="text-[#fbbf24] hover:underline font-semibold hover:text-[#f59e0b]">
                 Sign in here
               </Link>
             </p>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-[#00f0ff]/20">
-            <div className="text-center text-sm text-gray-400">
-              <p>🔒 Your new password will be encrypted and secured</p>
+          <div className="mt-6 pt-6 border-t border-[#fbbf24]/20">
+            <div className="flex items-center justify-center text-sm text-gray-400">
+              <Shield className="w-4 h-4 mr-2 text-[#fbbf24]" />
+              <p>Your new password will be encrypted and secured</p>
             </div>
           </div>
         </motion.div>

@@ -1,8 +1,8 @@
-// components/TestimonialCarousel.jsx
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Quote } from "lucide-react";
 
 const TestimonialCarousel = () => {
   const testimonials = [
@@ -10,19 +10,19 @@ const TestimonialCarousel = () => {
       name: "Tricia Lam",
       role: "Crypto Investor",
       image: "/testw.jpg",
-      quote: "Kryptex mining farm has transformed my financial future. The returns are incredible and the platform is so easy to use.",
+      quote: "Cryptoglobtrade has transformed my financial future. The returns are incredible and the platform is so professional and easy to use.",
     },
     {
       name: "Michael Davis",
       role: "Day Trader",
       image: "/army.jpg",
-      quote: "I've tried many platforms, but Kryptex's transparency and consistent profits keep me coming back.",
+      quote: "I've tried many platforms, but Cryptoglobtrade's transparency and consistent profits keep me coming back.",
     },
     {
       name: "Ken Roberson",
       role: "Business Owner",
       image: "test.jpg",
-      quote: "The passive income from Kryptex allows me to focus on growing my business. Highly recommended!",
+      quote: "The passive income from Cryptoglobtrade allows me to focus on growing my business. Highly recommended!",
     },
     {
       name: "Kenji Tanaka",
@@ -39,7 +39,7 @@ const TestimonialCarousel = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
+  const [direction, setDirection] = useState(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,53 +89,77 @@ const TestimonialCarousel = () => {
             }}
             className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-10"
           >
+            {/* Profile Image */}
             <div className="flex-shrink-0">
               <div className="relative">
                 <img
                   src={testimonials[currentIndex].image}
                   alt={testimonials[currentIndex].name}
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#00f0ff] shadow-lg"
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#fbbf24] shadow-lg shadow-[#fbbf24]/20"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/placeholder.svg";
+                  }}
                 />
-                <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-[#00f0ff] flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                  </svg>
+                <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] flex items-center justify-center shadow-lg">
+                  <Quote className="h-5 w-5 text-black" />
                 </div>
               </div>
             </div>
             
+            {/* Testimonial Content */}
             <div className="text-center md:text-left max-w-2xl">
               <div className="mb-6">
-                <h4 className="text-2xl font-bold mb-1">{testimonials[currentIndex].name}</h4>
+                <h4 className="text-2xl font-bold mb-1 text-white">{testimonials[currentIndex].name}</h4>
                 <p className="text-gray-400">{testimonials[currentIndex].role}</p>
               </div>
               
               <div className="relative">
-                <svg className="absolute -top-8 -left-8 text-[#00f0ff] opacity-20 w-16 h-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
+                {/* Opening Quote */}
+                <div className="absolute -top-6 -left-6 text-[#fbbf24] opacity-30">
+                  <Quote className="w-12 h-12" />
+                </div>
                 
-                <p className="text-xl italic text-gray-300 relative z-10">
+                {/* Testimonial Quote */}
+                <p className="text-xl italic text-gray-300 relative z-10 leading-relaxed">
                   "{testimonials[currentIndex].quote}"
                 </p>
                 
-                <svg className="absolute -bottom-8 -right-8 text-[#00f0ff] opacity-20 w-16 h-16 rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
+                {/* Closing Quote */}
+                <div className="absolute -bottom-6 -right-6 text-[#fbbf24] opacity-30 rotate-180">
+                  <Quote className="w-12 h-12" />
+                </div>
+              </div>
+              
+              {/* Rating */}
+              <div className="flex items-center justify-center md:justify-start mt-6 space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-5 h-5 text-[#fbbf24] fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Dots navigation */}
+      {/* Dots Navigation */}
       <div className="flex justify-center mt-8 space-x-2">
         {testimonials.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-[#00f0ff] w-8" : "bg-gray-600"
+              index === currentIndex 
+                ? "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] w-8" 
+                : "bg-gray-600 hover:bg-gray-500"
             }`}
             aria-label={`Go to testimonial ${index + 1}`}
           />

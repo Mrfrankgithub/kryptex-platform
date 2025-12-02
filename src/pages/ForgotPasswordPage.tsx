@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, ArrowLeft, CheckCircle, Clock } from "lucide-react"
+import { Mail, ArrowLeft, CheckCircle, Clock, Shield } from "lucide-react"
 import { Link } from "react-router-dom"
 import Button from "../components/ui/Button"
 import Input from "../components/ui/Input"
@@ -30,18 +30,32 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0e17] pb-5 text-white flex items-center justify-center px-4 pt-20">
+    <div className="min-h-screen bg-kryptex-dark text-white flex items-center justify-center px-4 pt-20">
       <div className="w-full max-w-md">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-[rgba(26,33,58,0.6)] backdrop-blur-md border border-[#00f0ff]/20 rounded-2xl p-8"
+          className="glass border border-[#fbbf24]/20 rounded-2xl p-8 shadow-lg shadow-purple-900/20"
         >
+          {/* Logo/Brand */}
+          <div className="flex items-center justify-center mb-6">
+           
+            <div className="ml-3">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-[#fbbf24] to-[#a78bfa] bg-clip-text text-transparent">
+                 <Link to="/" className="flex items-center">
+                                            <motion.div whileHover={{ scale: 1.04 }} className="flex items-center">
+                                              <img src="/logo.png" alt="Cryptoglobtrade Logo" className="h-24 w-auto mr-4" />
+                                            </motion.div>
+                                          </Link>
+              </h1>
+            </div>
+          </div>
+
           {/* Back to Login */}
           <Link
             to="/login"
-            className="inline-flex items-center text-[#00f0ff] hover:text-[#00d4e6] transition-colors duration-200 mb-6"
+            className="inline-flex items-center text-[#fbbf24] hover:text-[#f59e0b] transition-colors duration-200 mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Login
@@ -51,11 +65,11 @@ export default function ForgotPasswordPage() {
             <>
               {/* Email Step */}
               <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-[#00f0ff]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-[#00f0ff]" />
+                <div className="w-16 h-16 bg-gradient-to-r from-[#fbbf24]/20 to-[#f59e0b]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-8 h-8 text-[#fbbf24]" />
                 </div>
-                <h1 className="text-3xl font-bold mb-2">
-                  Forgot <span className="text-[#00f0ff]">Password</span>?
+                <h1 className="text-3xl font-bold mb-2 text-white">
+                  Forgot <span className="text-[#fbbf24]">Password</span>?
                 </h1>
                 <p className="text-gray-400">
                   No worries! Enter your email address and we'll send you a verification code to reset your password.
@@ -64,15 +78,15 @@ export default function ForgotPasswordPage() {
 
               <form onSubmit={handleEmailSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email Address</label>
+                  <label className="block text-sm font-medium mb-2 text-gray-300">Email Address</label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#a78bfa]" />
                     <Input
                       type="email"
                       placeholder="Enter your email address"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="pl-10"
+                      className="pl-10 bg-purple-900/20 border-purple-700/50 focus:border-[#fbbf24] text-white"
                       required
                     />
                   </div>
@@ -80,7 +94,7 @@ export default function ForgotPasswordPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-[#00f0ff] hover:bg-[#00d4e6] text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] hover:from-[#f59e0b] hover:to-[#d97706] text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#fbbf24]/20"
                 >
                   Send Verification Code
                 </Button>
@@ -90,32 +104,32 @@ export default function ForgotPasswordPage() {
             <>
               {/* Code Verification Step */}
               <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-[#4ade80]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-[#4ade80]" />
+                <div className="w-16 h-16 bg-gradient-to-r from-[#a78bfa]/20 to-[#8b5cf6]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-[#a78bfa]" />
                 </div>
-                <h1 className="text-3xl font-bold mb-2">
-                  Check Your <span className="text-[#4ade80]">Email</span>
+                <h1 className="text-3xl font-bold mb-2 text-white">
+                  Check Your <span className="text-[#a78bfa]">Email</span>
                 </h1>
                 <p className="text-gray-400 mb-4">
                   We've sent a 6-digit verification code to
                   <br />
-                  <span className="text-[#00f0ff] font-medium">{formData.email}</span>
+                  <span className="text-[#fbbf24] font-medium">{formData.email}</span>
                 </p>
                 <div className="flex items-center justify-center text-sm text-gray-500">
-                  <Clock className="w-4 h-4 mr-1" />
+                  <Clock className="w-4 h-4 mr-1 text-[#fbbf24]" />
                   Code expires in 10 minutes
                 </div>
               </div>
 
               <form onSubmit={handleCodeSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Verification Code</label>
+                  <label className="block text-sm font-medium mb-2 text-gray-300">Verification Code</label>
                   <Input
                     type="text"
                     placeholder="Enter 6-digit code"
                     value={formData.code}
                     onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                    className="text-center text-2xl tracking-widest"
+                    className="text-center text-2xl tracking-widest bg-purple-900/20 border-purple-700/50 focus:border-[#fbbf24] text-white"
                     maxLength={6}
                     required
                   />
@@ -123,7 +137,7 @@ export default function ForgotPasswordPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-[#4ade80] hover:bg-[#3bc470] text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] hover:from-[#8b5cf6] hover:to-[#7c3aed] text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#a78bfa]/20"
                 >
                   Verify Code
                 </Button>
@@ -133,7 +147,7 @@ export default function ForgotPasswordPage() {
                   <button
                     type="button"
                     onClick={() => console.log("Resend code")}
-                    className="text-[#00f0ff] hover:text-[#00d4e6] text-sm font-medium transition-colors duration-200"
+                    className="text-[#fbbf24] hover:text-[#f59e0b] text-sm font-medium transition-colors duration-200"
                   >
                     Resend Code
                   </button>
@@ -145,15 +159,16 @@ export default function ForgotPasswordPage() {
           <div className="mt-8 text-center">
             <p className="text-gray-400">
               Remember your password?{" "}
-              <Link to="/login" className="text-[#00f0ff] hover:underline font-semibold">
+              <Link to="/login" className="text-[#fbbf24] hover:underline font-semibold hover:text-[#f59e0b]">
                 Sign in here
               </Link>
             </p>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-[#00f0ff]/20">
-            <div className="text-center text-sm text-gray-400">
-              <p>🔒 Your account security is our priority</p>
+          <div className="mt-6 pt-6 border-t border-[#fbbf24]/20">
+            <div className="flex items-center justify-center text-sm text-gray-400">
+              <Shield className="w-4 h-4 mr-2 text-[#fbbf24]" />
+              <p>Your account security is our priority</p>
             </div>
           </div>
         </motion.div>

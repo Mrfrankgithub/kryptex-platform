@@ -26,7 +26,7 @@ export default function SupportPage() {
     {
       icon: <Mail className="w-6 h-6 text-kryptex-cyan" />,
       title: "Email Support",
-      info: "support@kryptex.com",
+      info: "support@cryptoglobtrade.com",
       description: "Get help via email within 24 hours",
     },
     {
@@ -44,7 +44,7 @@ export default function SupportPage() {
     {
       icon: <MapPin className="w-6 h-6 text-kryptex-cyan" />,
       title: "Office Location",
-      info: "New York, NY 10001",
+      info: "1 Old Street Yard, London UK EC1Y 8AF",
       description: "Visit our headquarters",
     },
   ]

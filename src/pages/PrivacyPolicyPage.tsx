@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
               <div>
                 <h2 className="text-2xl font-bold text-white mb-2">Privacy Commitment</h2>
                 <p className="text-gray-400">
-                  Kryptex Mining Farm is committed to protecting your privacy and ensuring the security of your financial assets.
+                  Cryptoglobtrade is committed to protecting your privacy and ensuring the security of your financial assets.
                 </p>
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
                 {
                   title: "Data Processing",
                   icon: <Building className="w-6 h-6 text-kryptex-cyan" />,
-                  content: "Kryptex Mining Farm (1 Old Street Yard, London UK EC1Y 8AF) has developed this platform. We recognize the importance of the protection of personal data and promise to respect your privacy and process your personal data in a careful and confidential manner."
+                  content: "Cryptoglobtrade (1 Old Street Yard, London UK EC1Y 8AF) has developed this platform. We recognize the importance of the protection of personal data and promise to respect your privacy and process your personal data in a careful and confidential manner."
                 },
                 {
                   title: "Purpose of Processing",
@@ -73,7 +73,7 @@ export default function PrivacyPolicyPage() {
                 {
                   title: "Data Access",
                   icon: <Shield className="w-6 h-6 text-kryptex-cyan" />,
-                  content: "Only authorized Kryptex Mining Farm personnel have access to your data. We never disclose your information to third parties except as required for verification purposes."
+                  content: "Only authorized Cryptoglobtrade personnel have access to your data. We never disclose your information to third parties except as required for verification purposes."
                 },
                 {
                   title: "Marketing & Cookies",
@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage() {
                 {
                   title: "Your Rights",
                   icon: <Users className="w-6 h-6 text-kryptex-cyan" />,
-                  content: "You have the right to access, correct, or delete your data. You can withdraw consent at any time by contacting us at support@kryptexminingfarm.com."
+                  content: "You have the right to access, correct, or delete your data. You can withdraw consent at any time by contacting us at support@cryptoglobtrade.com."
                 }
               ].map((item, index) => (
                 <motion.div
@@ -128,17 +128,17 @@ export default function PrivacyPolicyPage() {
               <div className="bg-gradient-to-br from-kryptex-dark to-kryptex-card border border-kryptex-green/20 rounded-xl p-8">
                 <h3 className="text-xl font-bold text-kryptex-green mb-4">Segregation of Client Funds</h3>
                 <p className="text-gray-300 mb-4">
-                  In accordance with FCA rules, all client money is kept fully segregated from Kryptex Mining Farm's own assets in an EEA-regulated credit institution. This ensures that clients funds are identifiable and available at all times and cannot be used by Kryptex for any purpose.
+                  In accordance with FCA rules, all client money is kept fully segregated from Cryptoglobtrade's own assets in an EEA-regulated credit institution. This ensures that clients funds are identifiable and available at all times and cannot be used by Cryptoglobtrade for any purpose.
                 </p>
                 <p className="text-gray-300">
-                  Under UK insolvency law, client money is protected and therefore unavailable to general creditors of the firm. Kryptex Mining Farm performs daily client money reconciliations in accordance with FCA requirements.
+                  Under UK insolvency law, client money is protected and therefore unavailable to general creditors of the firm. Cryptoglobtrade performs daily client money reconciliations in accordance with FCA requirements.
                 </p>
               </div>
 
               <div className="bg-gradient-to-br from-kryptex-dark to-kryptex-card border border-kryptex-green/20 rounded-xl p-8">
                 <h3 className="text-xl font-bold text-kryptex-green mb-4">Regulatory Compliance</h3>
                 <p className="text-gray-300 mb-4">
-                  Kryptex Mining Farm is regulated by the FCA and is required to file individual Client Money Asset Returns (CMAR) on a daily/weekly basis with the regulator. Our client money controls and processes are audited annually by our auditors who report to the FCA.
+                  Cryptoglobtrade is regulated by the FCA and is required to file individual Client Money Asset Returns (CMAR) on a daily/weekly basis with the regulator. Our client money controls and processes are audited annually by our auditors who report to the FCA.
                 </p>
                 <p className="text-gray-300">
                   If the bank holding segregated client money goes into liquidation, any losses would be covered by the FSCS up to £85,000 per client. Funds held with European banks are protected up to €100,000 per client under the Deposit Guarantee Scheme.
@@ -172,18 +172,18 @@ export default function PrivacyPolicyPage() {
             
             <div className="max-w-2xl mx-auto bg-white/5 p-6 rounded-lg border border-kryptex-cyan/20">
               <img 
-                src="/certificate.jpg" 
-                alt="Kryptex Mining Farm Regulatory Certificate" 
+                src="/certificate.jpeg" 
+                alt="Cryptoglobtrade Regulatory Certificate" 
                 className="w-full h-auto rounded-lg border-2 border-kryptex-cyan/30"
               />
               <p className="text-gray-400 mt-4">
-                Official regulatory certification demonstrating Kryptex Mining Farm's compliance with financial security standards.
+                Official regulatory certification demonstrating Cryptoglobtrade's compliance with financial security standards.
               </p>
             </div>
             
             <div className="mt-8 text-gray-400 max-w-2xl mx-auto">
               <p>
-                This certificate verifies that Kryptex Mining Farm meets all regulatory requirements for client fund protection and financial security as mandated by the International Approval and Registration Center (IARC) and European financial regulators.
+                This certificate verifies that Cryptoglobtrade meets all regulatory requirements for client fund protection and financial security as mandated by the International Approval and Registration Center (IARC) and European financial regulators.
               </p>
             </div>
           </motion.div>

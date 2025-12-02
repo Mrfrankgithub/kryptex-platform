@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, Shield, Lock, Verified } from "lucide-react"
 import { Link } from "react-router-dom"
 
 export default function Footer() {
@@ -19,20 +19,40 @@ export default function Footer() {
     { href: "/privacy-policy", label: "Financial Security" },
   ]
 
-
-
   return (
-    <footer className="bg-[rgba(26,33,58,0.8)] backdrop-blur-md border-t border-[#00f0ff]/20 text-white">
+    <footer className="bg-gradient-to-b from-[rgba(30,25,50,0.9)] to-[rgba(15,11,30,0.95)] backdrop-blur-md border-t border-[#fbbf24]/20 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h3 className="text-2xl font-bold text-[#00f0ff] mb-4">Kryptex</h3>
-            <p className="text-gray-300 mb-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
+          >
+            <div className="flex items-center space-x-2">
+              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#fbbf24] to-[#a78bfa] flex items-center justify-center">
+                <span className="text-black font-bold text-xl">C</span>
+              </div>
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-[#fbbf24] to-[#a78bfa] bg-clip-text text-transparent">
+                Cryptoglobtrade
+              </h3>
+            </div>
+            <p className="text-gray-300">
               Leading cryptocurrency investment platform helping investors achieve financial freedom through strategic
               crypto trading.
             </p>
-           
+            <div className="flex space-x-4 pt-2">
+              <div className="h-10 w-10 rounded-full bg-purple-900/50 border border-[#fbbf24]/20 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-[#fbbf24]" />
+              </div>
+              <div className="h-10 w-10 rounded-full bg-purple-900/50 border border-[#fbbf24]/20 flex items-center justify-center">
+                <Lock className="w-5 h-5 text-[#fbbf24]" />
+              </div>
+              <div className="h-10 w-10 rounded-full bg-purple-900/50 border border-[#fbbf24]/20 flex items-center justify-center">
+                <Verified className="w-5 h-5 text-[#fbbf24]" />
+              </div>
+            </div>
           </motion.div>
 
           {/* Quick Links */}
@@ -41,11 +61,15 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-semibold mb-4 text-[#fbbf24]">Quick Links</h4>
+            <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.href} className="text-gray-300 hover:text-[#00f0ff] transition-colors duration-200">
+                  <Link 
+                    to={link.href} 
+                    className="text-gray-300 hover:text-[#fbbf24] transition-colors duration-200 flex items-center group"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#fbbf24] mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     {link.label}
                   </Link>
                 </li>
@@ -59,11 +83,15 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-lg font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-semibold mb-4 text-[#fbbf24]">Legal</h4>
+            <ul className="space-y-3">
               {legalLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.href} className="text-gray-300 hover:text-[#00f0ff] transition-colors duration-200">
+                  <Link 
+                    to={link.href} 
+                    className="text-gray-300 hover:text-[#fbbf24] transition-colors duration-200 flex items-center group"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#fbbf24] mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     {link.label}
                   </Link>
                 </li>
@@ -77,46 +105,61 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <div className="space-y-3">
-              <div className="flex items-center text-gray-300">
-                <Mail className="w-4 h-4 mr-3 text-[#00f0ff]" />
-                <span>support@kryptex.com</span>
+            <h4 className="text-lg font-semibold mb-4 text-[#fbbf24]">Contact Us</h4>
+            <div className="space-y-4">
+              <div className="flex items-center text-gray-300 group hover:text-[#fbbf24] transition-colors duration-200">
+                <div className="w-8 h-8 rounded-full bg-purple-900/50 border border-[#fbbf24]/20 flex items-center justify-center mr-3 group-hover:bg-[#fbbf24] group-hover:border-[#fbbf24] transition-all">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <span>support@cryptoglobtrade.com</span>
               </div>
-              <div className="flex items-center text-gray-300">
-                <Phone className="w-4 h-4 mr-3 text-[#00f0ff]" />
+              <div className="flex items-center text-gray-300 group hover:text-[#fbbf24] transition-colors duration-200">
+                <div className="w-8 h-8 rounded-full bg-purple-900/50 border border-[#fbbf24]/20 flex items-center justify-center mr-3 group-hover:bg-[#fbbf24] group-hover:border-[#fbbf24] transition-all">
+                  <Phone className="w-4 h-4" />
+                </div>
                 <span>+1 (555) 123-4567</span>
               </div>
-              <div className="flex items-center text-gray-300">
-                <MapPin className="w-4 h-4 mr-3 text-[#00f0ff]" />
-                <span>New York, NY 10001</span>
+              <div className="flex items-center text-gray-300 group hover:text-[#fbbf24] transition-colors duration-200">
+                <div className="w-8 h-8 rounded-full bg-purple-900/50 border border-[#fbbf24]/20 flex items-center justify-center mr-3 group-hover:bg-[#fbbf24] group-hover:border-[#fbbf24] transition-all">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <span>1 Old Street Yard, London UK EC1Y 8AF</span>
               </div>
             </div>
           </motion.div>
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-[#00f0ff]/20 mt-8 pt-8">
+        <div className="border-t border-[#fbbf24]/20 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-gray-400 text-sm mb-4 md:mb-0"
+              className="text-gray-400 text-sm mb-4 md:mb-0 text-center md:text-left"
             >
-            <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Kryptex. All rights reserved. | Licensed and regulated financial services provider.
-          </p>
-            </motion.p>
+              <p className="text-gray-400">
+                &copy; {new Date().getFullYear()} Cryptoglobtrade. All rights reserved. | Licensed and regulated financial services provider.
+              </p>
+            </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center space-x-4 text-sm text-gray-400"
+              className="flex items-center space-x-6 text-sm"
             >
-              <span>🔒 SSL Secured</span>
-              <span>🛡️ IARC Insured</span>
-              <span>✅ Verified Platform</span>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Shield className="w-4 h-4 text-[#fbbf24]" />
+                <span>SSL Secured</span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Lock className="w-4 h-4 text-[#fbbf24]" />
+                <span>IARC Insured</span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Verified className="w-4 h-4 text-[#fbbf24]" />
+                <span>Verified Platform</span>
+              </div>
             </motion.div>
           </div>
         </div>
