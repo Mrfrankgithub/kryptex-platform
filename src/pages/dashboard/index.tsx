@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ArrowUp, ArrowDown, TrendingUp, Wallet, DollarSign, RefreshCw, LogOut, TrendingDown } from "lucide-react"
+import { ArrowUp, ArrowDown, TrendingUp, Wallet, DollarSign, RefreshCw, LogOut, TrendingDown, Plus, Minus } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import DashboardBottomBar from "../../components/DashboardBottomBar"
 
@@ -39,32 +39,40 @@ export default function DashboardPage() {
     }
   }
 
+  const handleDeposit = () => {
+    navigate("/dashboard/invest")
+  }
+
+  const handleWithdraw = () => {
+    navigate("/dashboard/withdrawal")
+  }
+
   const stats = [
     {
       title: "Total Balance",
       value: "$12,450.80",
-      icon: <Wallet className="text-[#fbbf24]" size={24} />,
+      icon: <Wallet className="text-kryptex-cyan" size={24} />,
       change: "+5.3%",
       isPositive: true,
     },
     {
       title: "Total Deposits",
       value: "$8,750.00",
-      icon: <ArrowDown className="text-[#a78bfa]" size={24} />,
+      icon: <ArrowDown className="text-kryptex-green" size={24} />,
       change: "+0.0%",
       isPositive: true,
     },
     {
       title: "Total Withdrawals",
       value: "$2,340.50",
-      icon: <ArrowUp className="text-[#ef4444]" size={24} />,
+      icon: <ArrowUp className="text-kryptex-gold" size={24} />,
       change: "+0.0%",
       isPositive: true,
     },
     {
       title: "Total Profit",
       value: "$6,041.30",
-      icon: <TrendingUp className="text-[#10b981]" size={24} />,
+      icon: <TrendingUp className="text-green-400" size={24} />,
       change: "+12.8%",
       isPositive: true,
     },
@@ -119,29 +127,28 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-kryptex-dark text-white pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-br from-kryptex-dark to-purple-900/20 p-4 pt-6">
+      <div className="bg-gradient-to-br from-kryptex-dark/90 to-kryptex-card/50 p-4 pt-6">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center space-x-4">
-           
             <div>
               <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-              <p className="text-gray-400 text-sm">Welcome back, Alexander</p>
+              <p className="text-kryptex-light text-sm">Welcome back, Alexander</p>
             </div>
           </div>
           <div className="flex space-x-2">
             <button 
-              className="p-2 glass border border-[#fbbf24]/20 rounded-full hover:bg-[#fbbf24]/10 transition-colors" 
+              className="p-2 glass border border-kryptex-cyan/20 rounded-full hover:bg-kryptex-cyan/10 transition-colors" 
               onClick={() => setIsLoading(true)}
               title="Refresh"
             >
-              <RefreshCw size={20} className="text-[#fbbf24]" />
+              <RefreshCw size={20} className="text-kryptex-cyan" />
             </button>
             <button
-              className="p-2 glass border border-[#ef4444]/20 rounded-full hover:bg-[#ef4444]/10 transition-colors"
+              className="p-2 glass border border-red-400/20 rounded-full hover:bg-red-400/10 transition-colors"
               onClick={handleLogout}
               title="Logout"
             >
-              <LogOut size={20} className="text-[#ef4444]" />
+              <LogOut size={20} className="text-red-400" />
             </button>
           </div>
         </div>
@@ -151,45 +158,63 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass border border-[#fbbf24]/30 rounded-xl p-5 mb-6"
+          className="glass border border-kryptex-cyan/30 rounded-xl p-5 mb-6"
         >
           <div className="flex justify-between items-center mb-3">
             <div>
-              <div className="text-gray-300 text-sm mb-1">Available Balance</div>
+              <div className="text-kryptex-light text-sm mb-1">Available Balance</div>
               <div className="text-4xl font-bold mb-2 text-white">
-                {isLoading ? <div className="h-10 bg-gray-700/50 rounded animate-pulse w-40"></div> : "$12,450.80"}
+                {isLoading ? <div className="h-10 bg-kryptex-card/50 rounded animate-pulse w-40"></div> : "$12,450.80"}
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-xs text-gray-400">Updated 2 mins ago</span>
-                <span className="text-xs text-[#10b981] bg-[#10b981]/20 px-3 py-1 rounded-full flex items-center">
+                <span className="text-xs text-kryptex-light">Updated 2 mins ago</span>
+                <span className="text-xs text-green-400 bg-green-400/20 px-3 py-1 rounded-full flex items-center">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   +5.3% this week
                 </span>
               </div>
             </div>
-            <div className="w-12 h-12 rounded-full bg-[#fbbf24] flex items-center justify-center">
-              <DollarSign className="text-black" size={24} />
+            <div className="w-12 h-12 rounded-full bg-gradient-purple flex items-center justify-center">
+              <DollarSign className="text-white" size={24} />
             </div>
+          </div>
+
+          {/* Deposit and Withdraw Buttons */}
+          <div className="flex gap-4 mt-6">
+            <button
+              onClick={handleDeposit}
+              className="flex-1 bg-gradient-purple hover:bg-gradient-to-r hover:from-kryptex-cyan hover:to-kryptex-green text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+            >
+              <Plus size={20} />
+              Deposit
+            </button>
+            <button
+              onClick={handleWithdraw}
+              className="flex-1 glass border border-kryptex-gold text-kryptex-gold hover:bg-kryptex-gold/10 font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+            >
+              <Minus size={20} />
+              Withdraw
+            </button>
           </div>
         </motion.div>
 
         {/* Live Crypto Marquee */}
         <div className="mb-6 overflow-hidden">
-          <div className="glass border border-[#fbbf24]/20 rounded-xl p-3">
+          <div className="glass border border-kryptex-cyan/20 rounded-xl p-3">
             <div className="flex items-center mb-2">
-              <TrendingUp className="w-4 h-4 text-[#fbbf24] mr-2" />
-              <span className="text-sm text-gray-300">Live Crypto Prices</span>
+              <TrendingUp className="w-4 h-4 text-kryptex-cyan mr-2" />
+              <span className="text-sm text-kryptex-light">Live Crypto Prices</span>
             </div>
             <div className="relative overflow-hidden">
               <div className="flex space-x-8 animate-marquee whitespace-nowrap">
                 {cryptoPrices.map((crypto, index) => (
                   <div key={index} className="inline-flex items-center space-x-3 px-4">
-                    <div className="w-8 h-8 rounded-full bg-purple-900/50 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-kryptex-card/80 flex items-center justify-center">
                       <span className="text-xs font-bold text-white">{crypto.symbol}</span>
                     </div>
                     <div>
                       <div className="text-sm font-medium text-white">${crypto.price}</div>
-                      <div className={`text-xs flex items-center ${crypto.isPositive ? 'text-[#10b981]' : 'text-[#ef4444]'}`}>
+                      <div className={`text-xs flex items-center ${crypto.isPositive ? 'text-green-400' : 'text-red-400'}`}>
                         {crypto.isPositive ? <TrendingUp className="w-3 h-3 mr-1" /> : <TrendingDown className="w-3 h-3 mr-1" />}
                         {crypto.change}%
                       </div>
@@ -199,12 +224,12 @@ export default function DashboardPage() {
                 {/* Duplicate for seamless loop */}
                 {cryptoPrices.map((crypto, index) => (
                   <div key={`dup-${index}`} className="inline-flex items-center space-x-3 px-4">
-                    <div className="w-8 h-8 rounded-full bg-purple-900/50 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-kryptex-card/80 flex items-center justify-center">
                       <span className="text-xs font-bold text-white">{crypto.symbol}</span>
                     </div>
                     <div>
                       <div className="text-sm font-medium text-white">${crypto.price}</div>
-                      <div className={`text-xs flex items-center ${crypto.isPositive ? 'text-[#10b981]' : 'text-[#ef4444]'}`}>
+                      <div className={`text-xs flex items-center ${crypto.isPositive ? 'text-green-400' : 'text-red-400'}`}>
                         {crypto.isPositive ? <TrendingUp className="w-3 h-3 mr-1" /> : <TrendingDown className="w-3 h-3 mr-1" />}
                         {crypto.change}%
                       </div>
@@ -217,15 +242,15 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Tabs */}
-        <div className="flex border-b border-purple-900/50 mb-6">
+        <div className="flex border-b border-kryptex-card/50 mb-6">
           {["overview", "investments", "transactions"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex-1 py-3 text-sm font-medium capitalize transition-colors ${
                 activeTab === tab
-                  ? "text-[#fbbf24] border-b-2 border-[#fbbf24]"
-                  : "text-gray-400 hover:text-gray-300"
+                  ? "text-kryptex-cyan border-b-2 border-kryptex-cyan"
+                  : "text-kryptex-light hover:text-white"
               }`}
             >
               {tab}
@@ -242,17 +267,17 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass border border-purple-700/30 rounded-xl p-4"
+            className="glass border border-kryptex-card/50 rounded-xl p-4 hover-glow"
           >
             <div className="flex justify-between items-center mb-3">
-              <span className="text-xs text-gray-300">{stat.title}</span>
+              <span className="text-xs text-kryptex-light">{stat.title}</span>
               {stat.icon}
             </div>
             <div className="text-xl font-bold mb-1 text-white">
-              {isLoading ? <div className="h-6 bg-gray-700/50 rounded animate-pulse w-20"></div> : stat.value}
+              {isLoading ? <div className="h-6 bg-kryptex-card/50 rounded animate-pulse w-20"></div> : stat.value}
             </div>
             <div className={`text-xs flex items-center ${
-              stat.isPositive ? "text-[#10b981]" : "text-[#ef4444]"
+              stat.isPositive ? "text-green-400" : "text-red-400"
             }`}>
               {stat.isPositive ? <TrendingUp className="w-3 h-3 mr-1" /> : <TrendingDown className="w-3 h-3 mr-1" />}
               {stat.change} this month
@@ -266,13 +291,13 @@ export default function DashboardPage() {
         <div className="p-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-white">Active Investments</h2>
-            <button className="text-xs text-[#fbbf24] hover:text-[#f59e0b] font-medium">View All →</button>
+            <button className="text-xs text-kryptex-cyan hover:text-kryptex-green font-medium">View All →</button>
           </div>
 
           {isLoading ? (
             <div className="space-y-3">
-              <div className="h-24 bg-gray-800/50 rounded-xl animate-pulse"></div>
-              <div className="h-24 bg-gray-800/50 rounded-xl animate-pulse"></div>
+              <div className="h-24 bg-kryptex-card/50 rounded-xl animate-pulse"></div>
+              <div className="h-24 bg-kryptex-card/50 rounded-xl animate-pulse"></div>
             </div>
           ) : (
             <div className="space-y-4">
@@ -282,33 +307,33 @@ export default function DashboardPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className="glass border border-purple-700/30 rounded-xl p-4"
+                  className="glass border border-kryptex-card/50 rounded-xl p-4 hover-glow"
                 >
                   <div className="flex justify-between items-center mb-3">
-                    <span className="font-medium text-[#fbbf24]">{investment.plan}</span>
-                    <span className="text-xs bg-[#10b981]/20 text-[#10b981] px-3 py-1 rounded-full font-medium">
+                    <span className="font-medium text-kryptex-cyan">{investment.plan}</span>
+                    <span className="text-xs bg-green-400/20 text-green-400 px-3 py-1 rounded-full font-medium">
                       {investment.profit} Profit
                     </span>
                   </div>
                   <div className="flex justify-between text-sm mb-3">
                     <div>
-                      <div className="text-gray-400">Invested</div>
+                      <div className="text-kryptex-light">Invested</div>
                       <div className="text-white">{investment.invested}</div>
                     </div>
                     <div>
-                      <div className="text-gray-400">Expected Returns</div>
-                      <div className="text-[#10b981] font-medium">{investment.returns}</div>
+                      <div className="text-kryptex-light">Expected Returns</div>
+                      <div className="text-green-400 font-medium">{investment.returns}</div>
                     </div>
                   </div>
-                  <div className="w-full bg-purple-900/30 rounded-full h-2 mb-2">
+                  <div className="w-full bg-kryptex-card/30 rounded-full h-2 mb-2">
                     <div
-                      className="bg-gradient-to-r from-[#fbbf24] to-[#a78bfa] h-2 rounded-full transition-all duration-500"
+                      className="bg-gradient-purple h-2 rounded-full transition-all duration-500"
                       style={{ width: `${investment.progress}%` }}
                     ></div>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-gray-400">Progress: {investment.progress}%</span>
-                    <span className="text-[#fbbf24]">{investment.timeLeft}</span>
+                    <span className="text-kryptex-light">Progress: {investment.progress}%</span>
+                    <span className="text-kryptex-cyan">{investment.timeLeft}</span>
                   </div>
                 </motion.div>
               ))}
@@ -322,14 +347,14 @@ export default function DashboardPage() {
         <div className="p-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-white">Recent Transactions</h2>
-            <button className="text-xs text-[#fbbf24] hover:text-[#f59e0b] font-medium">View All →</button>
+            <button className="text-xs text-kryptex-cyan hover:text-kryptex-green font-medium">View All →</button>
           </div>
 
           {isLoading ? (
             <div className="space-y-3">
-              <div className="h-16 bg-gray-800/50 rounded-xl animate-pulse"></div>
-              <div className="h-16 bg-gray-800/50 rounded-xl animate-pulse"></div>
-              <div className="h-16 bg-gray-800/50 rounded-xl animate-pulse"></div>
+              <div className="h-16 bg-kryptex-card/50 rounded-xl animate-pulse"></div>
+              <div className="h-16 bg-kryptex-card/50 rounded-xl animate-pulse"></div>
+              <div className="h-16 bg-kryptex-card/50 rounded-xl animate-pulse"></div>
             </div>
           ) : (
             <div className="space-y-3">
@@ -339,41 +364,41 @@ export default function DashboardPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="glass border border-purple-700/30 rounded-xl p-4 flex items-center"
+                  className="glass border border-kryptex-card/50 rounded-xl p-4 flex items-center hover-glow"
                 >
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${
                       transaction.type === "deposit"
-                        ? "bg-[#a78bfa]/20"
+                        ? "bg-kryptex-cyan/20"
                         : transaction.type === "withdrawal"
-                          ? "bg-[#ef4444]/20"
-                          : "bg-[#10b981]/20"
+                          ? "bg-red-400/20"
+                          : "bg-green-400/20"
                     }`}
                   >
-                    {transaction.type === "deposit" && <ArrowDown size={20} className="text-[#a78bfa]" />}
-                    {transaction.type === "withdrawal" && <ArrowUp size={20} className="text-[#ef4444]" />}
-                    {transaction.type === "profit" && <TrendingUp size={20} className="text-[#10b981]" />}
+                    {transaction.type === "deposit" && <ArrowDown size={20} className="text-kryptex-cyan" />}
+                    {transaction.type === "withdrawal" && <ArrowUp size={20} className="text-red-400" />}
+                    {transaction.type === "profit" && <TrendingUp size={20} className="text-green-400" />}
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-1">
                       <div>
                         <span className="font-medium capitalize text-white">{transaction.type}</span>
-                        <span className="text-xs text-gray-400 ml-2">{transaction.crypto}</span>
+                        <span className="text-xs text-kryptex-light ml-2">{transaction.crypto}</span>
                       </div>
                       <span
                         className={`font-semibold ${
                           transaction.type === "deposit"
-                            ? "text-[#a78bfa]"
+                            ? "text-kryptex-cyan"
                             : transaction.type === "withdrawal"
-                              ? "text-[#ef4444]"
-                              : "text-[#10b981]"
+                              ? "text-red-400"
+                              : "text-green-400"
                         }`}
                       >
                         {transaction.type === "withdrawal" ? "-" : "+"}
                         {transaction.amount}
                       </span>
                     </div>
-                    <div className="flex justify-between text-xs text-gray-400">
+                    <div className="flex justify-between text-xs text-kryptex-light">
                       <span>{transaction.plan || "Bank Transfer"}</span>
                       <span>{transaction.date}</span>
                     </div>

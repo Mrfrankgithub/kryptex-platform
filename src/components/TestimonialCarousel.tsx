@@ -8,33 +8,33 @@ const TestimonialCarousel = () => {
   const testimonials = [
     {
       name: "Tricia Lam",
-      role: "Crypto Investor",
+      role: "Investment Portfolio Manager",
       image: "/testw.jpg",
-      quote: "Cryptoglobtrade has transformed my financial future. The returns are incredible and the platform is so professional and easy to use.",
+      quote: "Future Gains has transformed my investment strategy. The returns are exceptional and the platform's transparency gives me confidence to invest with peace of mind.",
     },
     {
       name: "Michael Davis",
-      role: "Day Trader",
+      role: "Financial Advisor",
       image: "/army.jpg",
-      quote: "I've tried many platforms, but Cryptoglobtrade's transparency and consistent profits keep me coming back.",
+      quote: "I've recommended Future Gains to all my clients. The consistent performance and professional interface make it the top choice for sophisticated investors.",
     },
     {
       name: "Ken Roberson",
       role: "Business Owner",
       image: "test.jpg",
-      quote: "The passive income from Cryptoglobtrade allows me to focus on growing my business. Highly recommended!",
+      quote: "The passive income from Future Gains allows me to focus on growing my business while my investments work for me. Highly recommended for any entrepreneur!",
     },
     {
       name: "Kenji Tanaka",
       role: "Blockchain Developer",
       image: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=150&h=150&fit=crop&crop=face",
-      quote: "The security measures on this platform give me confidence to invest larger amounts without worry.",
+      quote: "The security measures on this platform are exceptional. I trust Future Gains with my entire crypto portfolio because of their institutional-grade protection.",
     },
     {
       name: "Fatima Al-Farsi",
       role: "Finance Director",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-      quote: "My portfolio has grown by 78% in just 6 months. This is the best investment decision I've made.",
+      quote: "My investment portfolio has grown by 82% in just 6 months with Future Gains. This is hands down the best financial decision I've ever made.",
     },
   ];
 
@@ -95,13 +95,13 @@ const TestimonialCarousel = () => {
                 <img
                   src={testimonials[currentIndex].image}
                   alt={testimonials[currentIndex].name}
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#fbbf24] shadow-lg shadow-[#fbbf24]/20"
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-kryptex-gold shadow-lg shadow-kryptex-gold/20"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = "/placeholder.svg";
                   }}
                 />
-                <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] flex items-center justify-center shadow-lg">
+                <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-r from-kryptex-gold to-kryptex-cyan flex items-center justify-center shadow-lg">
                   <Quote className="h-5 w-5 text-black" />
                 </div>
               </div>
@@ -111,22 +111,22 @@ const TestimonialCarousel = () => {
             <div className="text-center md:text-left max-w-2xl">
               <div className="mb-6">
                 <h4 className="text-2xl font-bold mb-1 text-white">{testimonials[currentIndex].name}</h4>
-                <p className="text-gray-400">{testimonials[currentIndex].role}</p>
+                <p className="text-kryptex-light">{testimonials[currentIndex].role}</p>
               </div>
               
               <div className="relative">
                 {/* Opening Quote */}
-                <div className="absolute -top-6 -left-6 text-[#fbbf24] opacity-30">
+                <div className="absolute -top-6 -left-6 text-kryptex-gold opacity-30">
                   <Quote className="w-12 h-12" />
                 </div>
                 
                 {/* Testimonial Quote */}
-                <p className="text-xl italic text-gray-300 relative z-10 leading-relaxed">
+                <p className="text-xl italic text-kryptex-light relative z-10 leading-relaxed">
                   "{testimonials[currentIndex].quote}"
                 </p>
                 
                 {/* Closing Quote */}
-                <div className="absolute -bottom-6 -right-6 text-[#fbbf24] opacity-30 rotate-180">
+                <div className="absolute -bottom-6 -right-6 text-kryptex-gold opacity-30 rotate-180">
                   <Quote className="w-12 h-12" />
                 </div>
               </div>
@@ -136,7 +136,7 @@ const TestimonialCarousel = () => {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 text-[#fbbf24] fill-current"
+                    className="w-5 h-5 text-kryptex-gold fill-current"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -158,8 +158,8 @@ const TestimonialCarousel = () => {
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentIndex 
-                ? "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] w-8" 
-                : "bg-gray-600 hover:bg-gray-500"
+                ? "bg-gradient-to-r from-kryptex-gold to-kryptex-cyan w-8" 
+                : "bg-kryptex-card hover:bg-kryptex-light"
             }`}
             aria-label={`Go to testimonial ${index + 1}`}
           />

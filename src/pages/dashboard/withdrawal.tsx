@@ -7,12 +7,15 @@ import { ArrowUp, Check, Copy, AlertCircle, Wallet, Bitcoin, CreditCard, Coins, 
 import DashboardBottomBar from "../../components/DashboardBottomBar"
 import Button from "../../components/ui/Button"
 import Input from "../../components/ui/Input"
+import ReceiptModal from "../../components/ReceiptModal"
 
 export default function WithdrawalPage() {
   const [amount, setAmount] = useState("")
   const [withdrawalMethod, setWithdrawalMethod] = useState<string | null>(null)
   const [walletAddress, setWalletAddress] = useState("")
   const [step, setStep] = useState(1)
+  const [showReceipt, setShowReceipt] = useState(false)
+  const [copied, setCopied] = useState<string | null>(null)
 
   const availableBalance = 12450.8
 
@@ -87,14 +90,9 @@ export default function WithdrawalPage() {
     if (step === 1) {
       setStep(2)
     } else {
-      // Here you would handle the withdrawal submission
-      alert(`Withdrawal submitted!\nAmount: $${amount}\nMethod: ${withdrawalMethod}\nAddress: ${walletAddress}`)
-
-      // Reset form
-      setAmount("")
-      setWithdrawalMethod(null)
-      setWalletAddress("")
-      setStep(1)
+      // Show receipt modal instead of alert
+      setShowReceipt(true)
+      // Don't reset form yet, let user see the receipt first
     }
   }
 
@@ -102,12 +100,29 @@ export default function WithdrawalPage() {
     setAmount(availableBalance.toString())
   }
 
+  const handleCopyAddress = (address: string) => {
+    navigator.clipboard.writeText(address)
+    setCopied(address)
+    setTimeout(() => setCopied(null), 2000)
+  }
+
+  const handleReceiptClose = () => {
+    setShowReceipt(false)
+    // Reset form after receipt is closed
+    setAmount("")
+    setWithdrawalMethod(null)
+    setWalletAddress("")
+    setStep(1)
+  }
+
+  const selectedMethod = withdrawalMethods.find((m) => m.id === withdrawalMethod)
+
   return (
     <div className="min-h-screen bg-kryptex-dark text-white pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-kryptex-dark p-4 pt-6">
+      <div className="bg-gradient-to-r from-kryptex-card/30 to-kryptex-dark/90 p-4 pt-6">
         <h1 className="text-2xl font-bold mb-2 text-white">Withdraw</h1>
-        <p className="text-gray-400 text-sm">Withdraw your funds securely</p>
+        <p className="text-kryptex-light text-sm">Withdraw your funds securely</p>
       </div>
 
       <div className="p-4">
@@ -116,11 +131,14 @@ export default function WithdrawalPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass border border-[#fbbf24]/10 rounded-xl p-4 mb-6"
+          className="glass border border-kryptex-cyan/10 rounded-xl p-4 mb-6 hover-glow"
         >
           <div className="flex justify-between items-center">
-            <span className="text-gray-400">Available Balance</span>
+            <span className="text-kryptex-light">Available Balance</span>
             <span className="text-lg font-bold text-white">${availableBalance.toFixed(2)}</span>
+          </div>
+          <div className="mt-2 text-xs text-kryptex-light">
+            Note: Minimum withdrawal amount is $10.00
           </div>
         </motion.div>
 
@@ -131,14 +149,14 @@ export default function WithdrawalPage() {
               {/* Step 1: Amount and Method */}
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">Withdrawal Amount</label>
+                  <label className="block text-sm font-medium mb-2 text-white">Withdrawal Amount</label>
                   <div className="relative">
                     <Input
                       type="number"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="Enter amount"
-                      className="pr-16 bg-purple-900/20 border-purple-700/50 focus:border-[#fbbf24] text-white"
+                      className="pr-16 bg-kryptex-card/20 border-kryptex-card/50 focus:border-kryptex-cyan text-white"
                       required
                       min="10"
                       max={availableBalance.toString()}
@@ -146,47 +164,47 @@ export default function WithdrawalPage() {
                     <button
                       type="button"
                       onClick={handleMaxAmount}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-[#fbbf24] bg-[#fbbf24]/10 px-2 py-1 rounded hover:bg-[#fbbf24]/20"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs bg-kryptex-cyan text-white px-2 py-1 rounded hover:bg-kryptex-green"
                     >
                       MAX
                     </button>
                   </div>
-                  <div className="flex justify-between text-xs mt-1 text-gray-400">
+                  <div className="flex justify-between text-xs mt-1 text-kryptex-light">
                     <span>Min: $10.00</span>
                     <span>Max: ${availableBalance.toFixed(2)}</span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">Withdrawal Method</label>
+                  <label className="block text-sm font-medium mb-2 text-white">Withdrawal Method</label>
                   <div className="space-y-3">
                     {withdrawalMethods.map((method) => (
                       <div
                         key={method.id}
                         className={`glass border ${
-                          withdrawalMethod === method.id ? "border-[#fbbf24]" : "border-[#fbbf24]/10"
-                        } rounded-xl p-4 ${method.disabled ? "opacity-50" : "cursor-pointer"}`}
+                          withdrawalMethod === method.id ? "border-kryptex-cyan" : "border-kryptex-cyan/10"
+                        } rounded-xl p-4 ${method.disabled ? "opacity-50" : "cursor-pointer hover-glow"}`}
                         onClick={() => !method.disabled && setWithdrawalMethod(method.id)}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
                             <div
-                              className={`w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mr-3`}
+                              className={`w-10 h-10 rounded-full bg-kryptex-card/30 flex items-center justify-center mr-3`}
                             >
                               {method.icon}
                             </div>
                             <div>
                               <div className="font-medium text-white">{method.name}</div>
-                              <div className="text-xs text-gray-400">Processing time: {method.processingTime}</div>
+                              <div className="text-xs text-kryptex-light">Processing time: {method.processingTime}</div>
                             </div>
                           </div>
 
                           <div
                             className={`w-5 h-5 rounded-full border ${
-                              withdrawalMethod === method.id ? "border-0 bg-[#fbbf24]" : "border-gray-400"
+                              withdrawalMethod === method.id ? "border-0 bg-kryptex-cyan" : "border-kryptex-light/50"
                             } flex items-center justify-center`}
                           >
-                            {withdrawalMethod === method.id && <Check size={12} className="text-black" />}
+                            {withdrawalMethod === method.id && <Check size={12} className="text-white" />}
                           </div>
                         </div>
                       </div>
@@ -197,7 +215,7 @@ export default function WithdrawalPage() {
                 <Button
                   type="submit"
                   disabled={!amount || !withdrawalMethod || Number(amount) > availableBalance || Number(amount) < 10}
-                  className="w-full bg-[#fbbf24] hover:bg-[#f59e0b] text-black mt-4 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-[#fbbf24]/20"
+                  className="w-full bg-gradient-purple hover:bg-gradient-to-r hover:from-kryptex-cyan hover:to-kryptex-green text-white mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Continue
                 </Button>
@@ -208,27 +226,35 @@ export default function WithdrawalPage() {
               {/* Step 2: Wallet Address */}
               <div className="space-y-4">
                 <div className="flex items-center mb-2">
-                  <ArrowUp size={16} className="text-[#fbbf24] mr-2" />
+                  <ArrowUp size={16} className="text-kryptex-cyan mr-2" />
                   <h2 className="text-lg font-semibold text-white">Withdrawal Details</h2>
                 </div>
 
-                <div className="glass border border-[#fbbf24]/10 rounded-xl p-4 mb-4">
-                  <div className="flex justify-between mb-2 text-gray-300">
+                <div className="glass border border-kryptex-cyan/10 rounded-xl p-4 mb-4">
+                  <div className="flex justify-between mb-2 text-kryptex-light">
                     <span>Amount:</span>
                     <span className="text-white">${Number(amount).toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between mb-2 text-gray-300">
+                  <div className="flex justify-between mb-2 text-kryptex-light">
                     <span>Method:</span>
-                    <span className="text-white">{withdrawalMethods.find((m) => m.id === withdrawalMethod)?.name}</span>
+                    <span className="text-white">{selectedMethod?.name}</span>
                   </div>
-                  <div className="flex justify-between text-gray-300">
+                  <div className="flex justify-between text-kryptex-light">
+                    <span>Processing Time:</span>
+                    <span className="text-kryptex-cyan">{selectedMethod?.processingTime}</span>
+                  </div>
+                  <div className="flex justify-between text-kryptex-light mt-2">
                     <span>Fee:</span>
-                    <span className="text-white">$0.00</span>
+                    <span className="text-green-400">$0.00</span>
+                  </div>
+                  <div className="flex justify-between font-medium mt-2 pt-2 border-t border-kryptex-card/30">
+                    <span className="text-white">You will receive:</span>
+                    <span className="text-kryptex-gold">${Number(amount).toFixed(2)}</span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-300">
+                  <label className="block text-sm font-medium mb-2 text-white">
                     {withdrawalMethod === "bank" ? "Bank Account Details" : "Wallet Address"}
                   </label>
                   <Input
@@ -236,14 +262,14 @@ export default function WithdrawalPage() {
                     value={walletAddress}
                     onChange={(e) => setWalletAddress(e.target.value)}
                     placeholder={withdrawalMethod === "bank" ? "Enter bank details" : "Enter wallet address"}
-                    className="bg-purple-900/20 border-purple-700/50 focus:border-[#fbbf24] text-white"
+                    className="bg-kryptex-card/20 border-kryptex-card/50 focus:border-kryptex-cyan text-white"
                     required
                   />
                 </div>
 
                 <div className="flex items-start p-3 bg-red-500/10 rounded-lg border border-red-500/20">
                   <AlertCircle size={16} className="text-red-400 mr-2 flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-gray-300">
+                  <p className="text-xs text-kryptex-light">
                     Please double-check your {withdrawalMethod === "bank" ? "bank details" : "wallet address"} before
                     submitting. We cannot recover funds sent to incorrect addresses.
                   </p>
@@ -253,14 +279,14 @@ export default function WithdrawalPage() {
                   <Button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="flex-1 bg-transparent border border-[#fbbf24] text-[#fbbf24] hover:bg-[#fbbf24]/10 hover:text-white"
+                    className="flex-1 glass border border-kryptex-cyan text-kryptex-cyan hover:bg-kryptex-cyan/10 hover:text-white"
                   >
                     Back
                   </Button>
                   <Button
                     type="submit"
                     disabled={!walletAddress}
-                    className="flex-1 bg-[#fbbf24] hover:bg-[#f59e0b] text-black disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-[#fbbf24]/20"
+                    className="flex-1 bg-gradient-purple hover:bg-gradient-to-r hover:from-kryptex-cyan hover:to-kryptex-green text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Confirm Withdrawal
                   </Button>
@@ -282,7 +308,7 @@ export default function WithdrawalPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="glass border border-[#fbbf24]/10 rounded-xl p-4 flex items-center"
+                  className="glass border border-kryptex-cyan/10 rounded-xl p-4 flex items-center hover-glow"
                 >
                   <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center mr-3">
                     <ArrowUp size={20} className="text-red-400" />
@@ -293,32 +319,54 @@ export default function WithdrawalPage() {
                       <span className="font-semibold text-red-400">-{withdrawal.amount}</span>
                     </div>
                     <div className="flex justify-between text-xs">
-                      <span className="text-gray-400">
+                      <span className="text-kryptex-light">
                         {withdrawal.method} • {withdrawal.date}
                       </span>
                       <span
                         className={`${
-                          withdrawal.status === "completed" ? "text-[#a78bfa]" : "text-[#fbbf24]"
+                          withdrawal.status === "completed" ? "text-green-400" : "text-kryptex-gold"
                         } capitalize`}
                       >
                         {withdrawal.status}
                       </span>
                     </div>
-                    <div className="flex items-center text-xs text-gray-400 mt-1">
+                    <div className="flex items-center text-xs text-kryptex-light mt-1">
                       <span className="truncate w-32">{withdrawal.address}</span>
-                      <Copy size={12} className="ml-1 cursor-pointer hover:text-[#fbbf24]" />
+                      <button
+                        onClick={() => handleCopyAddress(withdrawal.address)}
+                        className="ml-1 cursor-pointer hover:text-kryptex-cyan"
+                      >
+                        {copied === withdrawal.address ? (
+                          <span className="text-green-400 text-xs">Copied!</span>
+                        ) : (
+                          <Copy size={12} />
+                        )}
+                      </button>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
           ) : (
-            <div className="glass border border-[#fbbf24]/10 rounded-xl p-6 text-center">
-              <p className="text-gray-400">No recent withdrawals</p>
+            <div className="glass border border-kryptex-cyan/10 rounded-xl p-6 text-center">
+              <p className="text-kryptex-light">No recent withdrawals</p>
             </div>
           )}
         </div>
       </div>
+
+      {/* Receipt Modal */}
+      <ReceiptModal
+        isOpen={showReceipt}
+        onClose={handleReceiptClose}
+        type="withdrawal"
+        amount={amount}
+        currency="USD"
+        transactionId=""
+        paymentMethod={selectedMethod?.name || ""}
+        walletAddress={walletAddress}
+        processingTime={selectedMethod?.processingTime}
+      />
 
       {/* Bottom Navigation */}
       <DashboardBottomBar />

@@ -4,49 +4,50 @@
 
 @layer base {
   :root {
+    /* Light theme (optional, if you still want light mode) */
     --background: 0 0% 100%;
     --foreground: 240 10% 10%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 10%;
-    --primary: 240 10% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --primary: 270 100% 65%; /* Electric Purple */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 250 20% 25%; /* Dark Purple */
+    --secondary-foreground: 0 0% 100%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 270 100% 65%; /* Electric Purple */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 10% 10%;
+    --ring: 270 100% 65%; /* Electric Purple */
     --radius: 0.5rem;
   }
 
   .dark {
-    /* New deep purple/gold theme */
-    --background: 250 20% 8%;
-    --foreground: 210 40% 98%;
-    --card: 250 20% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 250 20% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 45 93% 58%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 260 25% 20%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 260 25% 15%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 260 25% 20%;
-    --accent-foreground: 210 40% 98%;
+    /* New Deep Purple & Electric Purple theme - MAIN THEME */
+    --background: 250 20% 8%; /* #120926 */
+    --foreground: 0 0% 100%; /* White text */
+    --card: 250 20% 15%; /* #26194A - Lighter Dark Purple */
+    --card-foreground: 0 0% 100%;
+    --popover: 250 20% 15%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 270 100% 65%; /* #8A3FFC - Vibrant Purple */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 250 20% 15%; /* #26194A */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 250 20% 20%;
+    --muted-foreground: 250 20% 70%; /* #AFA4C9 - Soft Lavender */
+    --accent: 270 100% 65%; /* #8A3FFC */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 260 25% 20%;
-    --input: 260 25% 20%;
-    --ring: 45 93% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 250 20% 20%;
+    --input: 250 20% 20%;
+    --ring: 270 100% 65%; /* #8A3FFC */
   }
 }
 
@@ -61,20 +62,20 @@
 
 /* Scrollbar styling - Updated to new theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f0b1e;
+  background: #120926;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #fbbf24;
-  border-radius: 4px;
+  background: #8A3FFC;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+  background: #6E37F9;
 }
 
 /* Animation utilities */
@@ -88,22 +89,62 @@
   }
 }
 
+@keyframes glow-purple {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(138, 63, 252, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(138, 63, 252, 0.8);
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
+.animate-glow {
+  animation: glow-purple 3s ease-in-out infinite;
+}
+
 /* Glassmorphism utilities - Updated to new theme */
 .glass {
-  background: rgba(30, 25, 50, 0.6);
+  background: rgba(38, 25, 74, 0.6); /* #26194A with opacity */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(251, 191, 36, 0.2);
+  border: 1px solid rgba(138, 63, 252, 0.2); /* #8A3FFC with opacity */
 }
 
 .glass-navbar {
-  background: rgba(15, 11, 30, 0.8);
+  background: rgba(18, 9, 38, 0.9); /* #120926 with opacity */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(138, 63, 252, 0.2);
+}
+
+.glass-gold {
+  background: rgba(197, 160, 99, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 99, 0.3);
+}
+
+/* Gradient backgrounds */
+.bg-gradient-radial-purple {
+  background: radial-gradient(circle at 50% 50%, rgba(138, 63, 252, 0.15) 0%, rgba(18, 9, 38, 0) 70%);
+}
+
+.bg-gradient-linear-purple {
+  background: linear-gradient(135deg, rgba(138, 63, 252, 0.1) 0%, rgba(18, 9, 38, 0) 100%);
+}
+
+/* Custom utilities */
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(138, 63, 252, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+.text-shadow-purple {
+  text-shadow: 0 0 20px rgba(138, 63, 252, 0.5);
 }
 
 /* Allow translate dropdown to be clickable */
@@ -118,10 +159,9 @@
 }
 
 .goog-te-combo {
-  background-color: #0f0b1e !important;
-  color: #fbbf24 !important;
-  border: 1px solid #fbbf24;
-  /* padding: 19px 10px; */
+  background-color: #120926 !important;
+  color: #8A3FFC !important;
+  border: 1px solid #8A3FFC;
   padding-top: 900px;
   border-radius: 5px;
   font-family: inherit;
@@ -134,6 +174,6 @@
 }
 
 .goog-te-combo:hover {
-  background-color: #fbbf24 !important;
+  background-color: #8A3FFC !important;
   color: #000 !important;
 }

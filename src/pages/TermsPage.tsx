@@ -38,9 +38,9 @@ export default function TermsPage() {
               </p>
               <p className="text-gray-300 mt-3 flex items-start">
                 <span className="text-kryptex-cyan mr-2">•</span>
-                Cryptoglobtrade is not available to the general public and is opened only to qualified members. 
+                Futuregains is not available to the general public and is opened only to qualified members. 
                 The use of this site is restricted to our members and to individuals personally invited by them. 
-                Every deposit is considered to be a private transaction between Cryptoglobtrade and its Member.
+                Every deposit is considered to be a private transaction between Futuregains and its Member.
               </p>
             </div>
           </motion.div>
@@ -66,7 +66,7 @@ export default function TermsPage() {
                   <h3 className="text-xl font-semibold text-white">Maturity of Investment</h3>
                 </div>
                 <p className="text-gray-400">
-                  All financial investment options offered on Cryptoglobtrade have a maturity date, which each client agrees to before purchasing a product.
+                  All financial investment options offered on Futuregains have a maturity date, which each client agrees to before purchasing a product.
                 </p>
               </div>
               
@@ -76,7 +76,7 @@ export default function TermsPage() {
                   <h3 className="text-xl font-semibold text-white">Confirmation of Investments</h3>
                 </div>
                 <p className="text-gray-400">
-                  All client investment orders accepted on Cryptoglobtrade are backed-up by a confirmation message, while investment orders rejected receive a rejection message.
+                  All client investment orders accepted on Futuregains are backed-up by a confirmation message, while investment orders rejected receive a rejection message.
                 </p>
               </div>
               
@@ -216,7 +216,7 @@ export default function TermsPage() {
             
             <div className="p-6 bg-kryptex-card">
               <p className="text-gray-300 mb-6">
-                Cryptoglobtrade is dedicated to your security. There have been reports of fraudulent phone calls, 
+                Futuregains is dedicated to your security. There have been reports of fraudulent phone calls, 
                 emails, or other communications recently, impersonating brokerages and looking to defraud individuals 
                 of their funds or extract bank account information. There is never too much information when it comes 
                 to the best cybersecurity practices.
@@ -238,7 +238,7 @@ export default function TermsPage() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-400 mr-2">•</span>
-                  <span className="text-gray-300">Verify the authenticity of any communication claiming to be from Cryptoglobtrade</span>
+                  <span className="text-gray-300">Verify the authenticity of any communication claiming to be from Futuregains</span>
                 </li>
               </ul>
               

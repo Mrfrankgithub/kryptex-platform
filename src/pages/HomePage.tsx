@@ -1,232 +1,205 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, TrendingUp, Shield, Users, Award, CheckCircle } from "lucide-react"
+import { ArrowRight, TrendingUp, Shield, Users, Award, CheckCircle, Sparkles, Globe, BarChart3, Lock } from "lucide-react"
 import { Link } from "react-router-dom"
 import Button from "../components/ui/Button"
 import TestimonialCarousel from "../components/TestimonialCarousel"
 import Transactions from "../components/Transactions"
 import ServicesSection from "../components/ServicesSection"
+import DashboardShowcase from "../components/DashboardShowcase"
 import CryptoChartsSection from "../components/CryptoChartsSection"
 
 export default function HomePage() {
     const stats = [
-        { number: "50K+", label: "Active Investors" },
-        { number: "98.5%", label: "Success Rate" },
-        { number: "$2.5B+", label: "Total Invested" },
-        { number: "24/7", label: "Support" },
+        { number: "31K+", label: "Active Investors", icon: <Users className="w-4 h-4" /> },
+        { number: "97.5%", label: "Success Rate", icon: <TrendingUp className="w-4 h-4" /> },
+        { number: "$2.2B+", label: "Total Managed", icon: <BarChart3 className="w-4 h-4" /> },
+        { number: "24/7", label: "Global Support", icon: <Globe className="w-4 h-4" /> },
     ]
 
     const features = [
         {
-            icon: <Shield className="w-8 h-8 text-[#fbbf24]" />,
+            icon: <Shield className="w-8 h-8" />,
             title: "Secure Investment",
-            description: "Bank-level security with multi-layer encryption",
+            description: "Bank-level security with multi-layer encryption and institutional-grade protection",
+            gradient: "from-kryptex-cyan to-kryptex-green"
         },
         {
-            icon: <TrendingUp className="w-8 h-8 text-[#a78bfa]" />,
+            icon: <TrendingUp className="w-8 h-8" />,
             title: "High Returns",
-            description: "Up to 25% monthly returns on your investments",
+            description: "Consistent 15-25% monthly returns with proven investment strategies",
+            gradient: "from-kryptex-gold to-kryptex-cyan"
         },
         {
-            icon: <Users className="w-8 h-8 text-[#fbbf24]" />,
-            title: "Expert Team",
-            description: "Professional traders managing your portfolio",
+            icon: <Lock className="w-8 h-8" />,
+            title: "Regulated Platform",
+            description: "Fully licensed and compliant with international financial regulations",
+            gradient: "from-kryptex-green to-kryptex-gold"
         },
         {
-            icon: <Award className="w-8 h-8 text-[#a78bfa]" />,
-            title: "Proven Track Record",
-            description: "5+ years of consistent profitable trading",
+            icon: <Award className="w-8 h-8" />,
+            title: "Proven Excellence",
+            description: "25+ years of consistent profitable returns for our investors",
+            gradient: "from-kryptex-cyan to-kryptex-gold"
         },
     ]
 
-    const benefits = [
-        "No minimum investment required",
-        "24/7 account access",
-        "Instant withdrawals",
-        "Dedicated account manager",
-        "Real-time portfolio tracking",
-        "Insurance protection"
-    ]
-
+    
+    /* FIX: Added overflow-x-hidden to the main container to ensure the root element prevents horizontal overflow */
     return (
-        <div className="min-h-screen bg-kryptex-dark text-white">
-            {/* Hero Section - Professional Design */}
-            <section className="relative bg-gradient-to-br from-kryptex-dark via-purple-900/20 to-kryptex-dark min-h-screen flex items-center justify-center overflow-hidden pt-20 px-4">
-                {/* Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-amber-900/5"></div>
-                
-                {/* Subtle Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-                
-                <div className="relative z-10 container mx-auto max-w-7xl">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Text Content - Left Side */}
+        <div className="min-h-screen bg-kryptex-dark text-white overflow-x-hidden">
+            {/* Hero Section - Professional Centered Design */}
+            {/* The absolute elements within this section are contained by overflow-hidden */}
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden w-full px-4 pt-20">
+                {/* Animated background */}
+                <div className="absolute inset-0 overflow-hidden">
+                    {/* Main gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-kryptex-dark via-kryptex-card/30 to-kryptex-dark" />
+                    
+                    {/* Animated gradient orbs - these are the elements most likely to cause overflow, but are now contained by the inner overflow-hidden div */}
+                    <motion.div
+                        animate={{
+                            x: [0, 100, 0],
+                            y: [0, -50, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }}
+                        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-kryptex-cyan/10 via-transparent to-kryptex-gold/10 blur-3xl"
+                    />
+                    
+                    <motion.div
+                        animate={{
+                            x: [0, -80, 0],
+                            y: [0, 60, 0],
+                            scale: [1, 1.1, 1],
+                        }}
+                        transition={{
+                            duration: 25,
+                            repeat: Infinity,
+                            ease: "linear",
+                            delay: 0.5
+                        }}
+                        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-kryptex-gold/5 via-transparent to-kryptex-cyan/5 blur-3xl"
+                    />
+                    
+                    {/* Grid pattern */}
+                    <div 
+                        className="absolute inset-0 opacity-[0.015]"
+                        style={{
+                            backgroundImage: `linear-gradient(to right, #8A3FFC 1px, transparent 1px),
+                                              linear-gradient(to bottom, #8A3FFC 1px, transparent 1px)`,
+                            backgroundSize: '60px 60px'
+                        }}
+                    />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 w-full max-w-6xl mx-auto">
+                    <div className="text-center">
+                        {/* Trust badges */}
                         <motion.div
-                            className="text-center lg:text-left"
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            transition={{ duration: 0.6 }}
+                            className="inline-flex flex-wrap gap-3 justify-center items-center mb-8"
                         >
-                            {/* Trust Badge */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.5 }}
-                                className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-[#fbbf24]/20 rounded-full px-5 py-2 mb-8"
-                            >
-                                <div className="w-2 h-2 bg-[#fbbf24] rounded-full animate-pulse"></div>
-                                <span className="text-[#fbbf24] font-medium tracking-wide">SEC-Registered & Fully Licensed</span>
-                            </motion.div>
-
-                            {/* Main Heading */}
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4, duration: 0.5 }}
-                                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-                            >
-                                #1 <span className="text-[#fbbf24]">Crypto Wealth</span> Management
-                                <span className="block text-3xl md:text-4xl lg:text-5xl text-gray-300 mt-4">For Sophisticated Investors</span>
-                            </motion.h1>
-
-                            {/* Subtitle */}
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6, duration: 0.5 }}
-                                className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0"
-                            >
-                                Institutional-grade cryptocurrency investment solutions with risk-managed returns and professional portfolio oversight.
-                            </motion.p>
-
-                            {/* Benefits List */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.7, duration: 0.5 }}
-                                className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10"
-                            >
-                                {benefits.slice(0, 4).map((benefit, index) => (
-                                    <div key={index} className="flex items-center gap-2 text-gray-300">
-                                        <CheckCircle className="w-4 h-4 text-[#fbbf24]" />
-                                        <span className="text-sm md:text-base">{benefit}</span>
-                                    </div>
-                                ))}
-                            </motion.div>
-
-                            {/* CTA Buttons */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.8, duration: 0.5 }}
-                                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                            >
-                                <Link to="/register">
-                                    <Button className="bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] hover:from-[#f59e0b] hover:to-[#d97706] text-black font-semibold px-8 py-4 text-lg flex items-center justify-center w-full sm:w-auto hover:shadow-lg hover:shadow-[#fbbf24]/20 transition-all duration-300">
-                                        Start Investing Now
-                                        <ArrowRight className="ml-2 w-5 h-5" />
-                                    </Button>
-                                </Link>
-                                <Link to="/login">
-                                    <Button
-                                        variant="outline"
-                                        className="border-2 border-[#fbbf24] text-[#fbbf24] hover:bg-[#fbbf24] hover:text-black px-8 py-4 text-lg bg-transparent w-full sm:w-auto hover:shadow-lg hover:shadow-[#fbbf24]/10 transition-all duration-300"
-                                    >
-                                        Login Account
-                                    </Button>
-                                </Link>
-                            </motion.div>
-
-                            {/* Stats Preview */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1, duration: 0.5 }}
-                                className="mt-12 flex flex-wrap justify-center lg:justify-start gap-6"
-                            >
-                                {stats.slice(0, 2).map((stat, index) => (
-                                    <div key={index} className="text-center">
-                                        <div className="text-2xl font-bold text-[#fbbf24] mb-1"></div>
-                                        <div className="text-sm text-gray-400"> </div>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </motion.div>
-
-                        {/* Hero Image - Right Side */}
-                        <motion.div
-                            className="flex justify-center items-center"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                        >
-                            <div className="relative w-full max-w-lg">
-                                {/* Image Container with Professional Border */}
-                                <div className="relative overflow-hidden rounded-2xl border border-[#fbbf24]/20 shadow-2xl shadow-[#fbbf24]/5">
-                                    <img
-                                        src="/cry.png"
-                                        alt="Cryptoglobtrade Investment Platform"
-                                        className="w-full h-auto object-cover"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = "/placeholder.svg";
-                                        }}
-                                    />
-                                    {/* Gradient Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-kryptex-dark/20 via-transparent to-transparent"></div>
-                                </div>
-                                
-                                {/* Floating Card - Professional Feature */}
-                                <motion.div
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 1.2, duration: 0.5 }}
-                                    className="absolute -bottom-6 right-6 bg-gradient-to-r from-purple-900/80 to-purple-800/80 backdrop-blur-sm border border-[#fbbf24]/20 rounded-xl p-4 max-w-xs shadow-xl"
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] flex items-center justify-center">
-                                            <TrendingUp className="w-5 h-5 text-black" />
-                                        </div>
-                                        <div>
-                                            <div className="font-bold text-white">24.8% Average</div>
-                                            <div className="text-sm text-gray-300">Monthly Returns</div>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                            <div className="glass px-4 py-2 rounded-full border border-kryptex-cyan/20 flex items-center gap-2">
+                                <Sparkles className="w-3 h-3 text-kryptex-cyan" />
+                                <span className="text-sm text-kryptex-cyan font-medium">SEC-REGISTERED</span>
+                            </div>
+                            <div className="glass px-4 py-2 rounded-full border border-kryptex-gold/20 flex items-center gap-2">
+                                <Shield className="w-3 h-3 text-kryptex-gold" />
+                                <span className="text-sm text-kryptex-gold font-medium">FULLY LICENSED</span>
+                            </div>
+                            <div className="glass px-4 py-2 rounded-full border border-kryptex-green/20 flex items-center gap-2">
+                                <Award className="w-3 h-3 text-kryptex-green" />
+                                <span className="text-sm text-kryptex-green font-medium">AWARD-WINNING</span>
                             </div>
                         </motion.div>
-                         <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1, duration: 0.5 }}
-                                className="mt-12 flex flex-wrap justify-center lg:justify-start gap-6"
-                            >
-                                {stats.slice(0, 2).map((stat, index) => (
-                                    <div key={index} className="text-center">
-                                        <div className="text-2xl font-bold text-[#fbbf24] mb-1"></div>
-                                        <div className="text-sm text-gray-400"> </div>
-                                    </div>
-                                ))}
-                            </motion.div>
+
+                        {/* Main heading */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+                        >
+                            <span className="text-white">Elevate Your</span>
+                            <div className="mt-2">
+                                <span className="bg-gradient-to-r from-kryptex-cyan via-kryptex-gold to-kryptex-cyan bg-clip-text text-transparent animate-gradient-x">
+                                    Financial Future
+                                </span>
+                            </div>
+                        </motion.h1>
+
+                        {/* Subtitle */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="text-xl md:text-2xl text-kryptex-light max-w-3xl mx-auto mb-10 font-light"
+                        >
+                            Institutional-grade cryptocurrency investment management for sophisticated investors seeking exceptional returns with managed risk.
+                        </motion.p>
+
+                        
+                        {/* CTA Buttons */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+                        >
+                            <Link to="/register">
+                                <Button className="group bg-gradient-to-r from-kryptex-cyan to-kryptex-green hover:from-kryptex-green hover:to-kryptex-cyan text-white font-semibold px-5 py-3 text-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-kryptex-cyan/30 hover:scale-105">
+                                    <span className="flex items-center gap-2">
+                                        Begin Your Journey
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                                    </span>
+                                </Button>
+                            </Link>
+                            <Link to="/investment-plans">
+                                <Button
+                                    variant="outline"
+                                    className="border-2 border-kryptex-gold text-kryptex-gold hover:bg-kryptex-gold hover:text-black px-5 py-3 text-lg rounded-xl bg-transparent transition-all duration-300 hover:shadow-lg hover:shadow-kryptex-gold/20"
+                                >
+                                    Login Account
+                                </Button>
+                            </Link>
+                        </motion.div>
+
+                        
                     </div>
                 </div>
+
+                
             </section>
 
             {/* Stats Section */}
-            <section className="py-20 px-4">
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <section className="py-20 px-4 relative">
+                <div className="absolute inset-0 bg-gradient-radial-purple opacity-50" />
+                <div className="max-w-6xl mx-auto relative">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {stats.map((stat, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="text-center"
+                                className="glass border border-kryptex-cyan/10 rounded-xl p-6 text-center"
                             >
-                                <div className="text-3xl md:text-4xl font-bold text-[#fbbf24] mb-2">{stat.number}</div>
-                                <div className="text-gray-400">{stat.label}</div>
+                                <div className="inline-block p-3 rounded-lg bg-gradient-to-r from-kryptex-cyan/10 to-kryptex-gold/10 mb-4">
+                                    <div className="text-kryptex-cyan">
+                                        {stat.icon}
+                                    </div>
+                                </div>
+                                <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.number}</div>
+                                <div className="text-kryptex-light font-medium">{stat.label}</div>
                             </motion.div>
                         ))}
                     </div>
@@ -234,7 +207,7 @@ export default function HomePage() {
             </section>
 
             {/* Features Section */}
-            <section className="py-20 px-4">
+            <section className="py-20 px-4 relative">
                 <div className="max-w-6xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -242,11 +215,14 @@ export default function HomePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Why Choose <span className="text-[#fbbf24]">Cryptoglobtrade</span>?
-                        </h2>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Experience institutional-grade cryptocurrency investment with our professional platform
+                        <div className="inline-block mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                                Institutional <span className="text-kryptex-cyan">Excellence</span>
+                            </h2>
+                                                     <div className="w-12 h-1 bg-gradient-to-r from-kryptex-cyan to-kryptex-gold mx-auto mb-4"></div>
+                        </div>
+                        <p className="text-xl text-kryptex-light max-w-3xl mx-auto">
+                            Professional investment management combining cutting-edge technology with proven financial expertise
                         </p>
                     </motion.div>
 
@@ -257,35 +233,55 @@ export default function HomePage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                whileHover={{ scale: 1.02, y: -5 }}
-                                className="glass border border-[#fbbf24]/20 rounded-xl p-6 text-center hover:border-[#fbbf24]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#fbbf24]/5"
+                                whileHover={{ y: -10 }}
+                                className="group"
                             >
-                                <div className="mb-4 flex justify-center">{feature.icon}</div>
-                                <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
-                                <p className="text-gray-400">{feature.description}</p>
+                                <div className={`h-full bg-gradient-to-br ${feature.gradient}/10 from-10% to-90% border border-${feature.gradient.split('-')[1]}/20 rounded-2xl p-6 transition-all duration-300 hover:border-${feature.gradient.split('-')[1]}/40 hover:shadow-xl hover:shadow-${feature.gradient.split('-')[1]}/10`}>
+                                    <div className="mb-6">
+                                        <div className={`inline-block p-3 rounded-xl bg-gradient-to-r ${feature.gradient} bg-opacity-10`}>
+                                            <div className="text-white">
+                                                {feature.icon}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-kryptex-cyan group-hover:to-kryptex-gold">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="text-kryptex-light">{feature.description}</p>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
+            {/* Services Section */}
             <ServicesSection />
+
+            <DashboardShowcase /> 
+
+            {/* Crypto Charts Section */}
             <CryptoChartsSection />
 
             {/* Testimonials Section */}
-            <section className="py-20 px-4 bg-gradient-to-b from-purple-900/10 to-transparent">
-                <div className="max-w-6xl mx-auto">
+            <section className="py-20 px-4 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-kryptex-card/20 via-transparent to-kryptex-dark/30" />
+                <div className="max-w-6xl mx-auto relative">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            What Our <span className="text-[#a78bfa]">Investors</span> Say
-                        </h2>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Hear from our satisfied investors around the globe
+                        <div className="inline-block mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                                Trusted by <span className="text-kryptex-gold">Investors</span>
+                            </h2>
+                          <div className="w-12 h-1 bg-gradient-to-r from-kryptex-gold to-kryptex-cyan mx-auto mb-4"></div>
+
+                        </div>
+                        <p className="text-xl text-kryptex-light max-w-3xl mx-auto">
+                            Hear from our global community of successful investors who trust us with their financial future
                         </p>
                     </motion.div>
 
@@ -302,11 +298,14 @@ export default function HomePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Real-time <span className="text-[#fbbf24]">Transactions</span>
-                        </h2>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            See the latest deposits and withdrawals happening on our platform
+                        <div className="inline-block mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                                Real-time <span className="text-kryptex-cyan">Activity</span>
+                            </h2>
+                            <div className="w-12 h-1 bg-gradient-to-r from-kryptex-cyan to-kryptex-green mx-auto mb-4"></div>                          
+                        </div>
+                        <p className="text-xl text-kryptex-light max-w-3xl mx-auto">
+                            Transparent live tracking of investment activity across our platform
                         </p>
                     </motion.div>
 
@@ -314,22 +313,55 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section className="py-20 px-4">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Ready to Start Your <span className="text-[#fbbf24]">Investment Journey</span>?
+            {/* Final CTA Section */}
+            <section className="py-20 px-4 relative">
+                <div className="absolute inset-0 overflow-hidden">
+                    <motion.div
+                        animate={{
+                            rotate: 360
+                        }}
+                        transition={{
+                            duration: 120,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }}
+                        className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-r from-kryptex-cyan/5 via-transparent to-kryptex-gold/5"
+                    />
+                </div>
+                
+                <div className="relative z-10 max-w-4xl mx-auto">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }} 
+                        whileInView={{ opacity: 1, y: 0 }} 
+                        transition={{ duration: 0.8 }}
+                        /* FIX: Changed p-12 to responsive padding: p-6 sm:p-12 */
+                        className="glass border border-kryptex-cyan/20 rounded-3xl p-6 sm:p-12 text-center"
+                    >
+                        <div className="inline-block p-4 rounded-2xl bg-gradient-to-r from-kryptex-cyan/10 to-kryptex-gold/10 mb-8">
+                            <Sparkles className="w-12 h-12 text-kryptex-cyan" />
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                            Ready for <span className="bg-gradient-to-r from-kryptex-cyan via-kryptex-gold to-kryptex-cyan bg-clip-text text-transparent animate-gradient-x">Exceptional Returns</span>?
                         </h2>
-                        <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Join thousands of successful investors and start building your crypto wealth today
+                        <p className="text-xl text-kryptex-light mb-10 max-w-2xl mx-auto">
+                            Join thousands of sophisticated investors who have transformed their financial future with Future Gains
                         </p>
-                        <Link to="/register">
-                            <Button className="bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] hover:from-[#8b5cf6] hover:to-[#7c3aed] text-white font-semibold px-12 py-4 text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-800/20">
-                                Get Started Now
-                                <ArrowRight className="ml-2 w-6 h-6" />
-                            </Button>
-                        </Link>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link to="/register">
+                                <Button className="bg-gradient-to-r from-kryptex-cyan to-kryptex-green hover:from-kryptex-green hover:to-kryptex-cyan text-white font-semibold px-10 py-4 text-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-kryptex-cyan/30 hover:scale-105">
+                                    Start Investing Today
+                                    <ArrowRight className="ml-2 w-6 h-6" />
+                                </Button>
+                            </Link>
+                            <Link to="/about">
+                                <Button
+                                    variant="outline"
+                                    className="border-2 border-kryptex-gold text-kryptex-gold hover:bg-kryptex-gold hover:text-black px-8 py-4 text-lg rounded-xl bg-transparent"
+                                >
+                                    Learn About Us
+                                </Button>
+                            </Link>
+                        </div>
                     </motion.div>
                 </div>
             </section>

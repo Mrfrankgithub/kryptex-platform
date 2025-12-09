@@ -49,9 +49,9 @@ const Transactions = () => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="border-b border-purple-900/30 hover:bg-purple-900/20 transition-colors duration-200"
+      className="border-b border-kryptex-cyan/10 hover:bg-kryptex-card/50 transition-colors duration-200"
     >
-      <td className="py-3 px-4 text-gray-300">{transaction.name}</td>
+      <td className="py-3 px-4 text-kryptex-light">{transaction.name}</td>
       <td className={`py-3 px-4 font-medium ${
         transaction.type === "deposit" 
           ? "text-green-400" 
@@ -74,7 +74,7 @@ const Transactions = () => {
               "text-purple-400"
             }`}>{transaction.crypto.charAt(0)}</span>
           </div>
-          <span className="text-gray-300">{transaction.crypto}</span>
+          <span className="text-kryptex-light">{transaction.crypto}</span>
         </div>
       </td>
       <td className="py-3 px-4">
@@ -100,23 +100,23 @@ const Transactions = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="glass border border-[#fbbf24]/20 rounded-xl overflow-hidden"
+        className="glass border border-kryptex-cyan/20 rounded-xl overflow-hidden"
       >
-        <div className="bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] py-4 px-6">
-          <h3 className="text-xl font-bold text-black flex items-center">
+        <div className="bg-gradient-to-r from-kryptex-cyan to-kryptex-gold py-4 px-6">
+          <h3 className="text-xl font-bold text-white flex items-center">
             <TrendingUp className="h-5 w-5 mr-2" />
             Recent Deposits
           </h3>
-          <p className="text-black/80 text-sm mt-1">Live incoming investments</p>
+          <p className="text-white/80 text-sm mt-1">Live incoming investments</p>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="border-b border-purple-900/30">
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Investor</th>
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Amount</th>
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Asset</th>
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Type</th>
+              <tr className="border-b border-kryptex-cyan/10">
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Investor</th>
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Amount</th>
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Asset</th>
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Type</th>
               </tr>
             </thead>
             <tbody>
@@ -128,7 +128,7 @@ const Transactions = () => {
         </div>
         <div className="py-3 px-6 bg-gradient-to-r from-green-500/10 to-transparent border-t border-green-500/20">
           <div className="flex justify-between items-center">
-            <span className="text-gray-400 text-sm">Total Deposits</span>
+            <span className="text-kryptex-light text-sm">Total Deposits</span>
             <span className="text-green-400 font-bold">
               ${deposits.reduce((sum, t) => sum + parseFloat(t.amount), 0).toFixed(2)}
             </span>
@@ -141,9 +141,9 @@ const Transactions = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="glass border border-[#a78bfa]/20 rounded-xl overflow-hidden"
+        className="glass border border-kryptex-green/20 rounded-xl overflow-hidden"
       >
-        <div className="bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] py-4 px-6">
+        <div className="bg-gradient-to-r from-kryptex-green to-kryptex-cyan py-4 px-6">
           <h3 className="text-xl font-bold text-white flex items-center">
             <TrendingDown className="h-5 w-5 mr-2" />
             Recent Withdrawals
@@ -153,11 +153,11 @@ const Transactions = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="border-b border-purple-900/30">
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Investor</th>
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Amount</th>
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Asset</th>
-                <th className="py-3 px-4 text-left text-gray-400 font-medium">Type</th>
+              <tr className="border-b border-kryptex-cyan/10">
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Investor</th>
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Amount</th>
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Asset</th>
+                <th className="py-3 px-4 text-left text-kryptex-light font-medium">Type</th>
               </tr>
             </thead>
             <tbody>
@@ -169,7 +169,7 @@ const Transactions = () => {
         </div>
         <div className="py-3 px-6 bg-gradient-to-r from-red-500/10 to-transparent border-t border-red-500/20">
           <div className="flex justify-between items-center">
-            <span className="text-gray-400 text-sm">Total Withdrawals</span>
+            <span className="text-kryptex-light text-sm">Total Withdrawals</span>
             <span className="text-red-400 font-bold">
               ${withdrawals.reduce((sum, t) => sum + parseFloat(t.amount), 0).toFixed(2)}
             </span>

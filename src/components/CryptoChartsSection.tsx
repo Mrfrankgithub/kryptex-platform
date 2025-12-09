@@ -74,14 +74,14 @@ const CryptoChartsSection = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-              <div className="inline-flex items-center bg-purple-900/50 backdrop-blur-sm border border-[#fbbf24]/20 rounded-full px-6 py-2 mb-4">
-                <div className="w-2 h-2 bg-[#fbbf24] rounded-full mr-2 animate-pulse"></div>
-                <span className="text-[#fbbf24] font-medium">Market Overview</span>
+              <div className="inline-flex items-center bg-kryptex-card backdrop-blur-sm border border-kryptex-cyan/20 rounded-full px-6 py-2 mb-4">
+                <div className="w-2 h-2 bg-kryptex-cyan rounded-full mr-2 animate-pulse"></div>
+                <span className="text-kryptex-cyan font-medium">Market Overview</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold mb-2 text-white">
-                Real-time <span className="text-[#fbbf24]">Crypto Charts</span>
+                Real-time <span className="text-kryptex-cyan">Crypto Charts</span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl">
+              <p className="text-xl text-kryptex-light max-w-3xl">
                 Professional trading charts with advanced technical indicators
               </p>
             </div>
@@ -93,8 +93,8 @@ const CryptoChartsSection = () => {
                   onClick={() => setTimeframe(tf.id)}
                   className={`px-4 py-2 rounded-lg transition-colors font-medium ${
                     timeframe === tf.id
-                      ? "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black"
-                      : "bg-purple-900/50 hover:bg-[#fbbf24]/20 text-gray-300 border border-purple-700/50"
+                      ? "bg-gradient-to-r from-kryptex-cyan to-kryptex-gold text-black"
+                      : "bg-kryptex-card hover:bg-kryptex-cyan/20 text-kryptex-light border border-kryptex-cyan/20"
                   }`}
                 >
                   {tf.label}
@@ -110,7 +110,7 @@ const CryptoChartsSection = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="glass border border-[#fbbf24]/20 rounded-xl p-6"
+            className="glass border border-kryptex-cyan/20 rounded-xl p-6"
           >
             <h3 className="text-xl font-bold mb-4 text-white">Top Cryptocurrencies</h3>
             <div className="space-y-4">
@@ -122,8 +122,8 @@ const CryptoChartsSection = () => {
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className={`flex items-center justify-between p-4 rounded-lg cursor-pointer transition-all ${
                     activeTab === index
-                      ? "bg-gradient-to-r from-purple-900/40 to-purple-800/40 border border-[#fbbf24]/30"
-                      : "bg-purple-900/20 hover:bg-purple-900/30 border border-transparent"
+                      ? "bg-gradient-to-r from-kryptex-card to-kryptex-cyan/10 border border-kryptex-cyan/30"
+                      : "bg-kryptex-card hover:bg-kryptex-card/80 border border-transparent"
                   }`}
                   onClick={() => setActiveTab(index)}
                 >
@@ -136,7 +136,7 @@ const CryptoChartsSection = () => {
                     </div>
                     <div>
                       <div className="font-medium text-white">{crypto.name}</div>
-                      <div className="text-sm text-gray-400">${crypto.price.toLocaleString()}</div>
+                      <div className="text-sm text-kryptex-light">${crypto.price.toLocaleString()}</div>
                     </div>
                   </div>
                   <div
@@ -164,9 +164,9 @@ const CryptoChartsSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2 glass border border-[#fbbf24]/20 rounded-xl overflow-hidden"
+            className="lg:col-span-2 glass border border-kryptex-cyan/20 rounded-xl overflow-hidden"
           >
-            <div className="p-6 border-b border-purple-900/30">
+            <div className="p-6 border-b border-kryptex-cyan/20">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
                 <div className="flex items-center">
                   <div 
@@ -204,13 +204,13 @@ const CryptoChartsSection = () => {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="px-4 py-2 bg-purple-900/50 border border-purple-700/50 rounded-lg hover:bg-[#fbbf24]/20 transition-colors text-gray-300">
+                  <button className="px-4 py-2 bg-kryptex-card border border-kryptex-cyan/20 rounded-lg hover:bg-kryptex-cyan/20 transition-colors text-kryptex-light">
                     Indicators
                   </button>
-                  <button className="px-4 py-2 bg-purple-900/50 border border-purple-700/50 rounded-lg hover:bg-[#fbbf24]/20 transition-colors text-gray-300">
+                  <button className="px-4 py-2 bg-kryptex-card border border-kryptex-cyan/20 rounded-lg hover:bg-kryptex-cyan/20 transition-colors text-kryptex-light">
                     Drawing
                   </button>
-                  <button className="px-4 py-2 bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black rounded-lg font-medium hover:shadow-lg hover:shadow-[#fbbf24]/20">
+                  <button className="px-4 py-2 bg-gradient-to-r from-kryptex-cyan to-kryptex-gold text-black rounded-lg font-medium hover:shadow-lg hover:shadow-kryptex-cyan/20">
                     Trade
                   </button>
                 </div>
@@ -224,8 +224,8 @@ const CryptoChartsSection = () => {
                     onClick={() => setChartType(type.id)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 whitespace-nowrap ${
                       chartType === type.id
-                        ? "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black"
-                        : "bg-purple-900/50 border border-purple-700/50 text-gray-300 hover:bg-[#fbbf24]/20"
+                        ? "bg-gradient-to-r from-kryptex-cyan to-kryptex-gold text-black"
+                        : "bg-kryptex-card border border-kryptex-cyan/20 text-kryptex-light hover:bg-kryptex-cyan/20"
                     }`}
                   >
                     {type.icon && <span>{type.icon}</span>}
@@ -239,13 +239,13 @@ const CryptoChartsSection = () => {
             <div className="h-[400px] p-4 relative">
               {isLoading ? (
                 <div className="h-full flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#fbbf24]"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-kryptex-cyan"></div>
                 </div>
               ) : (
                 <>
                   <div className="absolute top-4 left-4 right-4 bottom-4 flex flex-col">
                     {/* Y-axis labels */}
-                    <div className="flex-1 flex flex-col justify-between pr-2 text-xs text-gray-500">
+                    <div className="flex-1 flex flex-col justify-between pr-2 text-xs text-kryptex-light">
                       {[maxVal, minVal + range * 0.75, minVal + range * 0.5, minVal + range * 0.25, minVal].map((val, i) => (
                         <div key={i}>{val.toFixed(1)}</div>
                       ))}
@@ -255,7 +255,7 @@ const CryptoChartsSection = () => {
                     <div className="flex-1 relative ml-8">
                       <div className="absolute inset-0 grid grid-cols-5 grid-rows-1">
                         {[...Array(5)].map((_, i) => (
-                          <div key={i} className="border-r border-purple-900/30"></div>
+                          <div key={i} className="border-r border-kryptex-cyan/20"></div>
                         ))}
                       </div>
                       
@@ -264,7 +264,7 @@ const CryptoChartsSection = () => {
                         <motion.path
                           d={`M0,${100 - ((chartData[0] - minVal) / range * 100)} ${chartData.map((val, i) => `L${i * (100 / (chartData.length - 1))},${100 - ((val - minVal) / range * 100)}`).join(" ")}`}
                           fill="none"
-                          stroke="#fbbf24"
+                          stroke="#8A3FFC"
                           strokeWidth="2"
                           initial={{ pathLength: 0 }}
                           animate={{ pathLength: 1 }}
@@ -274,8 +274,8 @@ const CryptoChartsSection = () => {
                         {/* Gradient area */}
                         <defs>
                           <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.3" />
-                            <stop offset="100%" stopColor="#fbbf24" stopOpacity="0" />
+                            <stop offset="0%" stopColor="#8A3FFC" stopOpacity="0.3" />
+                            <stop offset="100%" stopColor="#8A3FFC" stopOpacity="0" />
                           </linearGradient>
                         </defs>
                         <path
@@ -290,14 +290,14 @@ const CryptoChartsSection = () => {
             </div>
             
             {/* Timeframe footer */}
-            <div className="border-t border-purple-900/30 flex overflow-x-auto">
+            <div className="border-t border-kryptex-cyan/20 flex overflow-x-auto">
               {["1m", "5m", "15m", "30m", "1h", "4h", "1d", "1w"].map((tf, i) => (
                 <button
                   key={i}
                   className={`flex-1 py-3 text-center text-sm font-medium min-w-[60px] ${
                     timeframe === tf
-                      ? "text-[#fbbf24] border-t-2 border-[#fbbf24] bg-gradient-to-t from-[#fbbf24]/10 to-transparent"
-                      : "text-gray-500 hover:text-gray-300 hover:bg-purple-900/20"
+                      ? "text-kryptex-cyan border-t-2 border-kryptex-cyan bg-gradient-to-t from-kryptex-cyan/10 to-transparent"
+                      : "text-kryptex-light hover:text-kryptex-light hover:bg-kryptex-card/50"
                   }`}
                   onClick={() => setTimeframe(tf)}
                 >

@@ -12,7 +12,7 @@ export default function AboutPage() {
       description: "To democratize cryptocurrency investment and make it accessible to everyone worldwide.",
     },
     {
-      icon: <Users className="w-8 h-8 text-kryptex-green" />,
+      icon: <Users className="w-8 h-8 text-kryptex-gold" />,
       title: "Our Team",
       description: "Expert traders and developers with over 15 years of combined experience in finance and technology.",
     },
@@ -22,7 +22,7 @@ export default function AboutPage() {
       description: "Consistently delivering 15-25% monthly returns with a 98.5% success rate since 2019.",
     },
     {
-      icon: <Globe className="w-8 h-8 text-kryptex-green" />,
+      icon: <Globe className="w-8 h-8 text-kryptex-gold" />,
       title: "Global Reach",
       description: "Serving over 50,000 investors across 120+ countries with 24/7 multilingual support.",
     },
@@ -52,14 +52,15 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-kryptex-dark text-foreground">
       <PageHeader
-        title="About Cryptoglobtrade"
+        title="About Futuregains"
         subtitle="Leading cryptocurrency investment platform helping investors achieve financial freedom through strategic crypto trading"
         breadcrumb="About"
       />
 
       {/* Values Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-radial-purple pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,9 +68,9 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-              Our <span className="text-kryptex-green">Core Values</span>
+              Our <span className="bg-gradient-purple bg-clip-text text-transparent">Core Values</span>
             </h2>
-            <p className="text-xl text-gray-300">The principles that guide everything we do</p>
+            <p className="text-xl text-kryptex-light">The principles that guide everything we do</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -79,11 +80,11 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-kryptex-card backdrop-blur-sm border border-border/20 rounded-xl p-8 hover:shadow-lg transition-all duration-300 hover:border-kryptex-cyan/30"
+                className="glass rounded-xl p-8 hover:shadow-lg transition-all duration-300 hover-glow hover:border-kryptex-cyan/50 border border-border/20"
               >
                 <div className="mb-4">{value.icon}</div>
                 <h3 className="text-2xl font-semibold mb-4 text-white">{value.title}</h3>
-                <p className="text-gray-300">{value.description}</p>
+                <p className="text-kryptex-light">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -91,8 +92,9 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-linear-purple pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +104,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
               Meet Our <span className="text-kryptex-cyan">Expert Team</span>
             </h2>
-            <p className="text-xl text-gray-300">Industry veterans dedicated to your investment success</p>
+            <p className="text-xl text-kryptex-light">Industry veterans dedicated to your investment success</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -113,7 +115,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-kryptex-card backdrop-blur-sm border border-border/20 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:border-kryptex-cyan/30"
+                className="glass rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 hover-glow border border-border/20"
               >
                 <img
                   src={member.image || "/placeholder.svg"}
@@ -122,8 +124,8 @@ export default function AboutPage() {
                   loading="lazy"
                 />
                 <h3 className="text-xl font-semibold mb-2 text-white">{member.name}</h3>
-                <p className="text-kryptex-cyan mb-4">{member.role}</p>
-                <p className="text-gray-300 text-sm">{member.bio}</p>
+                <p className="text-kryptex-gold mb-4">{member.role}</p>
+                <p className="text-kryptex-light text-sm">{member.bio}</p>
               </motion.div>
             ))}
           </div>
@@ -134,31 +136,28 @@ export default function AboutPage() {
       <section 
         className="py-20 px-4 relative"
         style={{
-          backgroundImage: "url('/aboutbg.jpg')",
+          backgroundImage: "linear-gradient(rgba(18, 9, 38, 0.9), rgba(18, 9, 38, 0.9)), url('/aboutbg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed"
         }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-kryptex-dark/90 backdrop-blur-sm"></div>
-        
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="lg:w-1/2 lg:text-left text-center"
           >
-            <div className="inline-block bg-kryptex-card backdrop-blur-sm px-6 py-3 rounded-full border border-kryptex-cyan/20 mb-6">
+            <div className="inline-block glass px-6 py-3 rounded-full border border-kryptex-cyan/20 mb-6">
               <span className="text-kryptex-cyan text-sm font-medium">OUR JOURNEY</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">
-              Our <span className="text-kryptex-green">Story</span>
+              Our <span className="text-kryptex-gold">Story</span>
             </h2>
-            <div className="space-y-6 text-lg text-gray-300">
+            <div className="space-y-6 text-lg text-kryptex-light">
               <p>
-                Cryptoglobtrade was born from a simple vision: to make cryptocurrency investment accessible, profitable, and
+                Futuregains was born from a simple vision: to make cryptocurrency investment accessible, profitable, and
                 secure for everyone. Our founders, having witnessed the explosive growth of digital assets, recognized
                 the need for a platform that could bridge the gap between traditional finance and the crypto revolution.
               </p>
@@ -168,7 +167,7 @@ export default function AboutPage() {
                 innovation, and an unwavering commitment to our clients' financial growth.
               </p>
               <p>
-                Today, Cryptoglobtrade stands as a testament to what's possible when cutting-edge technology meets financial
+                Today, Futuregains stands as a testament to what's possible when cutting-edge technology meets financial
                 expertise. We continue to evolve, always staying ahead of market trends and regulatory changes to ensure
                 our investors have the best possible experience.
               </p>

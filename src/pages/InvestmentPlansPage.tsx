@@ -9,88 +9,84 @@ import PageHeader from "../components/PageHeader"
 export default function InvestmentPlansPage() {
   const plans = [
     {
-      name: "BASIC PLAN",
-      profit: "20%",
+      name: "FIRST PLAN",
+      profit: "5%",
       duration: "24 hours",
-      minDeposit: "$50",
-      maxDeposit: "$499",
-      referralCommission: "5%",
+      minDeposit: 100,
+      maxDeposit: 999,
       features: [
-        "20% profit + Your capital",
+        "5% profit + Your capital",
         "Withdrawal after 24 hours",
-        "Minimum deposit $50",
-        "Maximum deposit $499",
+        "Minimum deposit $100",
+        "Maximum deposit $999",
         "24/7 system monitoring",
         "5% Referral Commission",
       ],
       popular: false,
-      color: "border-[#fbbf24]/40",
-      bgColor: "bg-gradient-to-br from-purple-900/20 to-purple-800/20",
-      gradient: "from-[#fbbf24] to-[#f59e0b]",
-      badgeColor: "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b]",
+      color: "border-kryptex-cyan/40",
+      bgColor: "bg-gradient-to-br from-kryptex-card/30 to-kryptex-dark/30",
+      gradient: "from-kryptex-cyan to-kryptex-green",
+      badgeColor: "bg-gradient-to-r from-kryptex-cyan to-kryptex-green",
     },
     {
-      name: "STANDARD PLAN",
+     name: "ADVANCED PLAN",
+      profit: "10%",
+      duration: "24 hours",
+      minDeposit: 1000,
+      maxDeposit: 5000,
+      features: [
+        "10% profit + Your capital",
+        "Withdrawal after 24 hours",
+        "Minimum deposit $1,000",
+        "Maximum deposit $5,000",
+        "24/7 system monitoring",
+        "5% Referral Commission",
+      ],
+      popular: true,
+      color: "border-kryptex-gold/60",
+      bgColor: "bg-gradient-to-br from-kryptex-card/50 to-kryptex-dark/50",
+      gradient: "from-kryptex-gold to-kryptex-cyan",
+      badgeColor: "bg-gradient-to-r from-kryptex-gold to-kryptex-cyan",
+    },
+    {
+       name: "PRO PLAN",
       profit: "30%",
-      duration: "48 hours",
-      minDeposit: "$500",
-      maxDeposit: "$2,999",
-      referralCommission: "7%",
+      duration: "24 hours",
+      minDeposit: 3000,
+      maxDeposit: 7000,
       features: [
         "30% profit + Your capital",
-        "Withdrawal after 48 hours",
-        "Minimum deposit $500",
-        "Maximum deposit $2,999",
+        "Withdrawal after 24 hours",
+        "Minimum deposit $3,000",
+        "Maximum deposit $7,000",
         "24/7 system monitoring",
         "7% Referral Commission",
       ],
-      popular: true,
-      color: "border-[#a78bfa]/60",
-      bgColor: "bg-gradient-to-br from-purple-900/30 to-purple-800/30",
-      gradient: "from-[#a78bfa] to-[#8b5cf6]",
-      badgeColor: "bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6]",
+      popular: false,
+      color: "border-kryptex-green/40",
+      bgColor: "bg-gradient-to-br from-kryptex-card/30 to-kryptex-dark/30",
+      gradient: "from-kryptex-green to-kryptex-cyan",
+      badgeColor: "bg-gradient-to-r from-kryptex-green to-kryptex-cyan",
     },
     {
-      name: "EXTENDED PLAN",
+      name: "GOLDEN PLAN",
       profit: "40%",
-      duration: "72 hours",
-      minDeposit: "$3,000",
-      maxDeposit: "$9,999",
-      referralCommission: "12%",
+      duration: "24 hours",
+      minDeposit: 8000,
+      maxDeposit: "Unlimited",
       features: [
         "40% profit + Your capital",
-        "Withdrawal after 72 hours",
-        "Minimum deposit $3,000",
-        "Maximum deposit $9,999",
-        "24/7 system monitoring",
-        "12% Referral Commission",
-      ],
-      popular: false,
-      color: "border-[#fbbf24]/40",
-      bgColor: "bg-gradient-to-br from-purple-900/20 to-purple-800/20",
-      gradient: "from-[#fbbf24] to-[#f59e0b]",
-      badgeColor: "bg-gradient-to-r from-[#fbbf24] to-[#f59e0b]",
-    },
-    {
-      name: "VIP PLAN",
-      profit: "50%",
-      duration: "1 week",
-      minDeposit: "$10,000",
-      maxDeposit: "Unlimited",
-      referralCommission: "15%",
-      features: [
-        "50% profit + Your capital",
-        "Withdrawal after 1 week",
-        "Minimum deposit $10,000",
+        "Withdrawal after 24 hours",
+        "Minimum deposit $8,000",
         "Maximum deposit Unlimited",
         "24/7 system monitoring",
-        "15% Referral Commission",
+        "10% Referral Commission",
       ],
       popular: false,
-      color: "border-[#a78bfa]/60",
-      bgColor: "bg-gradient-to-br from-purple-900/30 to-purple-800/30",
-      gradient: "from-[#a78bfa] to-[#8b5cf6]",
-      badgeColor: "bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6]",
+      color: "border-kryptex-gold/60",
+      bgColor: "bg-gradient-to-br from-kryptex-card/50 to-kryptex-dark/50",
+      gradient: "from-kryptex-cyan to-kryptex-gold",
+      badgeColor: "bg-gradient-to-r from-kryptex-cyan to-kryptex-gold",
     },
   ]
 
@@ -98,11 +94,11 @@ export default function InvestmentPlansPage() {
     <div className="min-h-screen bg-kryptex-dark text-white">
       <PageHeader
         title="Investment Plans"
-        subtitle="Choose the perfect mining plan that matches your investment goals"
+        subtitle="Choose the perfect investment plan that matches your financial goals"
         breadcrumb="Plans"
       />
 
-      {/* Mining Plans Header */}
+      {/* Investment Plans Header */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div 
@@ -110,12 +106,12 @@ export default function InvestmentPlansPage() {
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block bg-purple-900/50 border border-[#fbbf24]/20 rounded-full px-6 py-2 mb-4">
-              <div className="w-2 h-2 bg-[#fbbf24] rounded-full mr-2 animate-pulse inline-block"></div>
-              <span className="text-[#fbbf24] font-medium">OUR PLANS</span>
+            <div className="inline-block bg-kryptex-card border border-kryptex-cyan/20 rounded-full px-6 py-2 mb-4">
+              <div className="w-2 h-2 bg-kryptex-cyan rounded-full mr-2 animate-pulse inline-block"></div>
+              <span className="text-kryptex-cyan font-medium">OUR PLANS</span>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Professional cryptocurrency mining with guaranteed returns and secure investments
+            <p className="text-xl text-kryptex-light max-w-3xl mx-auto">
+              Professional investment management with guaranteed returns and secure portfolio growth
             </p>
           </motion.div>
         </div>
@@ -132,11 +128,11 @@ export default function InvestmentPlansPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className={`relative glass border-2 ${plan.color} rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-[#fbbf24]/10 transition-all duration-300 ${plan.bgColor}`}
+                className={`relative glass border-2 ${plan.color} rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-kryptex-cyan/10 transition-all duration-300 ${plan.bgColor}`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className={`${plan.badgeColor} text-black px-4 py-2 rounded-full text-sm font-semibold flex items-center shadow-lg shadow-purple-800/50`}>
+                    <div className={`${plan.badgeColor} text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center shadow-lg shadow-kryptex-cyan/30`}>
                       <Star className="w-4 h-4 mr-1" />
                       Most Popular
                     </div>
@@ -146,43 +142,45 @@ export default function InvestmentPlansPage() {
                 {/* Plan header with gradient */}
                 <div className={`bg-gradient-to-r ${plan.gradient} p-4`}>
                   <div className="text-center mb-2">
-                    <div className="text-xl font-bold mb-1 text-black">
+                    <div className="text-xl font-bold mb-1 text-white">
                       {plan.name}
                     </div>
-                    <div className="text-4xl font-bold text-black">{plan.profit}</div>
-                    <div className="text-sm text-black font-medium">profit + Your capital</div>
+                    <div className="text-4xl font-bold text-white">{plan.profit}</div>
+                    <div className="text-sm text-white font-medium">profit + Your capital</div>
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <div className="flex items-center justify-center text-gray-300 mb-4">
-                    <Clock className="w-5 h-5 mr-2 text-[#fbbf24]" />
+                  <div className="flex items-center justify-center text-kryptex-light mb-4">
+                    <Clock className="w-5 h-5 mr-2 text-kryptex-cyan" />
                     Withdrawal after {plan.duration}
                   </div>
                   
-                  <div className="glass bg-purple-900/30 rounded-lg p-4 mb-6">
+                  <div className="glass bg-kryptex-card rounded-lg p-4 mb-6">
                     <div className="flex items-center justify-center text-sm mb-2">
-                      <DollarSign className="w-4 h-4 mr-2 text-[#fbbf24]" />
-                      <span className="font-semibold">MIN:</span> {plan.minDeposit}
+                      <DollarSign className="w-4 h-4 mr-2 text-kryptex-gold" />
+                      <span className="font-semibold text-white">MIN:</span> 
+                      <span className="ml-1 text-kryptex-light">{plan.minDeposit}</span>
                     </div>
                     <div className="flex items-center justify-center text-sm">
-                      <DollarSign className="w-4 h-4 mr-2 text-[#fbbf24]" />
-                      <span className="font-semibold">MAX:</span> {plan.maxDeposit}
+                      <DollarSign className="w-4 h-4 mr-2 text-kryptex-gold" />
+                      <span className="font-semibold text-white">MAX:</span> 
+                      <span className="ml-1 text-kryptex-light">{plan.maxDeposit}</span>
                     </div>
                   </div>
 
                   <ul className="space-y-3 mb-6">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <Check className="w-4 h-4 text-[#a78bfa] mr-2 flex-shrink-0 mt-1" />
-                        <span className="text-gray-300">{feature}</span>
+                        <Check className="w-4 h-4 text-kryptex-green mr-2 flex-shrink-0 mt-1" />
+                        <span className="text-kryptex-light">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   <Link to="/register">
-                    <button className={`w-full py-3 font-semibold bg-gradient-to-r ${plan.gradient} text-black rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-purple-800/30 flex items-center justify-center`}>
-                      Start Mining
+                    <button className={`w-full py-3 font-semibold bg-gradient-to-r ${plan.gradient} text-white rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-kryptex-cyan/30 flex items-center justify-center hover:scale-105`}>
+                      Start Investing
                       <ChevronRight className="ml-2 w-5 h-5" />
                     </button>
                   </Link>
@@ -201,23 +199,23 @@ export default function InvestmentPlansPage() {
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8 }}
           >
-            <div className="glass border border-[#fbbf24]/20 rounded-2xl p-8 text-center">
-              <div className="inline-block bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black rounded-full p-3 mb-6">
+            <div className="glass border border-kryptex-cyan/20 rounded-2xl p-8 text-center">
+              <div className="inline-block bg-gradient-to-r from-kryptex-cyan to-kryptex-green text-white rounded-full p-3 mb-6">
                 <Headphones className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">LIVE CHAT SUPPORT SYSTEM</h3>
-              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                FOR ANY COMPLAINT OR ASSISTANCE PLEASE CONTACT OUR 24/7 SUPPORT TEAM
+              <h3 className="text-2xl font-bold mb-4 text-white">24/7 CUSTOMER SUPPORT</h3>
+              <p className="text-kryptex-light mb-6 max-w-2xl mx-auto">
+                For any questions, assistance, or investment advice, our professional support team is available around the clock
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/support">
-                  <Button className="bg-gradient-to-r from-[#a78bfa] to-[#8b5cf6] hover:from-[#8b5cf6] hover:to-[#7c3aed] text-white px-8 py-3">
+                  <Button className="bg-gradient-to-r from-kryptex-cyan to-kryptex-green hover:from-kryptex-green hover:to-kryptex-cyan text-white px-8 py-3">
                     Contact Support
                   </Button>
                 </Link>
                 <Button
                   variant="outline"
-                  className="border-2 border-[#fbbf24] text-[#fbbf24] hover:bg-[#fbbf24] hover:text-black px-8 py-3 bg-transparent"
+                  className="border-2 border-kryptex-gold text-kryptex-gold hover:bg-kryptex-gold hover:text-black px-8 py-3 bg-transparent"
                 >
                   Live Chat
                 </Button>
@@ -228,22 +226,22 @@ export default function InvestmentPlansPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 px-4 bg-purple-900/20">
+      <section className="py-16 px-4 bg-kryptex-card/20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Frequently Asked <span className="text-[#fbbf24]">Questions</span>
+              Frequently Asked <span className="text-kryptex-cyan">Questions</span>
             </h2>
-            <p className="text-gray-300 max-w-3xl mx-auto">
-              Find answers to common questions about our investment plans and mining process
+            <p className="text-kryptex-light max-w-3xl mx-auto">
+              Find answers to common questions about our investment plans and financial services
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                question: "How do I start mining with Cryptoglobtrade?",
-                answer: "Simply register an account, choose a mining plan, make a deposit, and our system will start mining for you immediately."
+                question: "How do I start investing with Future Gains?",
+                answer: "Simply register an account, choose an investment plan, make a deposit, and our expert team will start managing your investment immediately."
               },
               {
                 question: "When can I withdraw my profits?",
@@ -255,7 +253,7 @@ export default function InvestmentPlansPage() {
               },
               {
                 question: "How are profits calculated?",
-                answer: "Profits are calculated based on your investment amount and the daily mining yield of your selected plan."
+                answer: "Profits are calculated based on your investment amount and the daily yield of your selected plan."
               }
             ].map((item, index) => (
               <motion.div
@@ -263,10 +261,10 @@ export default function InvestmentPlansPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass border border-[#fbbf24]/20 rounded-xl p-6"
+                className="glass border border-kryptex-cyan/20 rounded-xl p-6"
               >
-                <h3 className="text-xl font-semibold mb-3 text-[#fbbf24]">{item.question}</h3>
-                <p className="text-gray-300">{item.answer}</p>
+                <h3 className="text-xl font-semibold mb-3 text-kryptex-cyan">{item.question}</h3>
+                <p className="text-kryptex-light">{item.answer}</p>
               </motion.div>
             ))}
           </div>
